@@ -2,9 +2,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/AppData/Local/nvim/bundle/vim-plug.vim
-set rtp+=~/AppData/Local/nvim/bundle/autoload
-call plug#begin('~/AppData/Local/nvim/bundle')
+set rtp+=~/AppData/Local/nvim/autoload/vim-plug.vim
+call plug#begin('C:/Neovim/bundle')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
@@ -12,28 +11,23 @@ Plug 'luochen1990/rainbow'
 Plug 'nightsense/vrunchbang'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'rhysd/git-messenger.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jayli/vim-easydebugger'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'C:/ProgramData/chocolatey/lib/fzf/tools/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'stanangeloff/php.vim'
+Plug 'aserebryakov/vim-todo-lists'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
-set rtp+='C:/ProgramData/chocolatey/lib/fzf/tools/'
-
-""""""""""""""""""""""
-""""""" PYTHON """""""
-""""""""""""""""""""""
-"let g:python3_host_prog='~/AppData\Local\Programs\Python\Python37\python'
-"let g:python_host_prog='~/AppData\Local\Programs\Python\Python27\python'
-
-"let g:ycm_path_to_python_interpreter='~/AppData\Local\Programs\Python\Python37\python'
 
 let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
+
+
+let g:VimTodoListsMoveItems = 0
+let g:vimwiki_list = [{'path': '~/Desktop/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """"""""""""""""""""""""""
 """"""" APPEARANCE """""""
@@ -43,31 +37,41 @@ colorscheme vrunchbang-dark
 set encoding=utf-8 " necessary for powerline symbols to show under windows
 
 
-""""""""""""""""""""""
-""""""" CTRL-P """""""
-""""""""""""""""""""""
+"""""""""""""""""""""""
+"""""""" CTRL-P """""""
+"""""""""""""""""""""""
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPLastMode'
 let g:ctrlp_extensions = ['line']
 let g:ctrlp_custom_ignore = { 'dir' : '.*[\/]thirdparty\|node_modules\|bin\|\.git\|\.vscode|vendor'}
 
 
-"""""""""""""""""""""""
-""""""" AIRLINE """""""
-"""""""""""""""""""""""
+""""""""""""""""""""""""
+"""""""" AIRLINE """""""
+""""""""""""""""""""""""
 set laststatus=2 " always show the status bar
 let g:airline_powerline_fonts=1
 
 
-""""""""""""""""""""""""""""""""""""""""""""
-""""""" RAINBOW PARENTHESES IMPROVED """""""
-""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
+"""""""" RAINBOW PARENTHESES IMPROVED """""""
+"""""""""""""""""""""""""""""""""""""""""""""
 let g:rainbow_active = 1
 
+""""""""""""""""""""""""""
+"""""""" ULTISNIPS """""""
+""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-"""""""""""""""""""""""""""
-""""""" KEYBINDINGS """""""
-"""""""""""""""""""""""""""
+let g:UltiSnipsSnippetDirectories=["C:\Neovim\bundle\vim-snippets\UltiSnips","C:\Neovim\snippets"]
+
+let g:UltiSnipsEditSplit="vertical"
+
+""""""""""""""""""""""""""""
+"""""""" KEYBINDINGS """""""
+""""""""""""""""""""""""""""
 " More intuitive navigation when lines are wrapped
 nnoremap k gk
 nnoremap j gj
@@ -81,87 +85,84 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 
-"""""""""""""""""""""""""""
-""""""" INDENTATION """""""
-"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
+"""""""" INDENTATION """""""
+""""""""""""""""""""""""""""
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
 set expandtab
 "set noexpandtab     " Use actual <Tab> instead of spaces for indentation
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
-                    " according to 'shiftwidth'. 'tabstop' is used in other
-                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                    " at the start of the line.
+" according to 'shiftwidth'. 'tabstop' is used in other
+" places. A <BS> will delete a 'shiftwidth' worth of space
+" at the start of the line.
 set autoindent      " Copy indent from current line when starting a new line
-                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                    " command).
+" (typing <CR> in Insert mode or when using the "o" or "O"
+" command).
 set breakindent     " when wrapping a line, consider indentation
 
 
-""""""""""""""""""""""""""""
-""""""" LINE NUMBERS """""""
-""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""
+"""""""" LINE NUMBERS """""""
+"""""""""""""""""""""""""""""
 set number          " Show absolute line numbers.
 set relativenumber	" Show relative line numbers.
 
 
-""""""""""""""""""""""
-""""""" SEARCH """""""
-""""""""""""""""""""""
+"""""""""""""""""""""""
+"""""""" SEARCH """""""
+"""""""""""""""""""""""
 set incsearch       " While typing a search command, show immediately where the
 set ignorecase
 set smartcase       " Override the 'ignorecase' option if the search pattern
 
 
-let g:ycm_use_clangd = 0
-
 
 set formatoptions=c,q,r,t " This is a sequence of letters which describes how
-                    " automatic formatting is to be done.
-                    "
-                    " letter    meaning when present in 'formatoptions'
-                    " ------    ---------------------------------------
-                    " c         Auto-wrap comments using textwidth, inserting
-                    "           the current comment leader automatically.
-                    " q         Allow formatting of comments with "gq".
-                    " r         Automatically insert the current comment leader
-                    "           after hitting <Enter> in Insert mode.
-                    " t         Auto-wrap text using textwidth (does not apply
-                    "           to comments)
+" automatic formatting is to be done.
+"
+" letter    meaning when present in 'formatoptions'
+" ------    ---------------------------------------
+" c         Auto-wrap comments using textwidth, inserting
+"           the current comment leader automatically.
+" q         Allow formatting of comments with "gq".
+" r         Automatically insert the current comment leader
+"           after hitting <Enter> in Insert mode.
+" t         Auto-wrap text using textwidth (does not apply
+"           to comments)
 set wrap           " this enables 'visual' wrapping
 set autoread       " automatically read file changes from outside
-	" 'fixes' autoread, see: https://github.com/neovim/neovim/issues/1936
+" 'fixes' autoread, see: https://github.com/neovim/neovim/issues/1936
 au FocusGained * :checktime
-set shellslash
 set noswapfile
 
 language en_US
 
-"set shell=wsl
-set shell=powershell shellquote=( shellpipe=\| shellxquote= shellredir=>
-set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-set shellredir=\|\ Out-File\ -Encoding\ UTF8
-let g:terminal_color_0  = '#2e3436'
-let g:terminal_color_1  = '#cc0000'
-let g:terminal_color_2  = '#4e9a06'
-let g:terminal_color_3  = '#c4a000'
-let g:terminal_color_4  = '#3465a4'
-let g:terminal_color_5  = '#75507b'
-let g:terminal_color_6  = '#0b939b'
-let g:terminal_color_7  = '#d3d7cf'
-let g:terminal_color_8  = '#555753'
-let g:terminal_color_9  = '#ef2929'
-let g:terminal_color_10 = '#8ae234'
-let g:terminal_color_11 = '#fce94f'
-let g:terminal_color_12 = '#729fcf'
-let g:terminal_color_13 = '#ad7fa8'
-let g:terminal_color_14 = '#00f5e9'
-let g:terminal_color_15 = '#eeeeec'
+""set shell=wsl
+"set shell=powershell shellquote=( shellpipe=\| shellxquote= shellredir=>
+"set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+"set shellredir=\|\ Out-File\ -Encoding\ UTF8
+"let g:terminal_color_0  = '#2e3436'
+"let g:terminal_color_1  = '#cc0000'
+"let g:terminal_color_2  = '#4e9a06'
+"let g:terminal_color_3  = '#c4a000'
+"let g:terminal_color_4  = '#3465a4'
+"let g:terminal_color_5  = '#75507b'
+"let g:terminal_color_6  = '#0b939b'
+"let g:terminal_color_7  = '#d3d7cf'
+"let g:terminal_color_8  = '#555753'
+"let g:terminal_color_9  = '#ef2929'
+"let g:terminal_color_10 = '#8ae234'
+"let g:terminal_color_11 = '#fce94f'
+"let g:terminal_color_12 = '#729fcf'
+"let g:terminal_color_13 = '#ad7fa8'
+"let g:terminal_color_14 = '#00f5e9'
+"let g:terminal_color_15 = '#eeeeec'
 
 filetype plugin on
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 """ COC """
-" if hidden is not set, TextEdit might fail.
+"if hidden is not set, TextEdit might fail.
 set hidden
 
 " Some servers have issues with backup files, see #649
@@ -169,7 +170,7 @@ set nobackup
 set nowritebackup
 
 " Better display for messages
-set cmdheight=2
+"set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -183,14 +184,14 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -216,11 +217,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    "  if (index(['vim','help'], &filetype) >= 0)
+    "    execute 'h '.expand('<cword>')
+    "  else
+    "    call CocAction('doHover')
+    "  endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -234,11 +235,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    "  autocmd!
+    "   Setup formatexpr specified filetype(s).
+    "  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    "   Update signature help on jump placeholder
+    "  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -294,23 +295,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 set wildignore+=**/vendor/**,**/node_modules/**
 
 
-syntax match phpNiceOperator "||" conceal cchar=∨ contained containedin=phpRegion
-syntax match phpNiceOperator "&&" conceal cchar=∧ contained containedin=phpRegion
-syntax match phpNiceOperator "!" conceal cchar=¬ contained containedin=phpRegion
-syntax match phpNiceOperator "<=" conceal cchar=≤ contained containedin=phpRegion
-syntax match phpNiceOperator ">=" conceal cchar=≥ contained containedin=phpRegion
-syntax match phpNiceOperator "==" conceal cchar=≈ contained containedin=phpRegion
-syntax match phpNiceOperator "===" conceal cchar=≡ contained containedin=phpRegion
-syntax match phpNiceOperator "::" conceal cchar=∷ contained containedin=phpRegion
-syntax match phpNiceOperator "!=" conceal cchar=≠ contained containedin=phpRegion
-syntax match phpNiceRelation "=>" conceal cchar=⇛ contained containedin=phpRegion
-syntax match phpNiceMemberSelector "\->" conceal cchar=→ contained containedin=phpRegion
+syntax match phpNiceRelation "=>" conceal cchar=⇛
+syntax match phpNiceMemberSelector "\->" conceal cchar=→
 
-hi link phpNiceOperator phpOperator
-hi link phpNiceStatement phpStatement
-hi link phpNiceKeyword phpKeyword
-hi link phpNiceRelation phpRelation
-hi link phpNiceMemberSelector phpMemberSelector
-hi! link Conceal phpOperator
-
-setlocal conceallevel=2
+set conceallevel=2
