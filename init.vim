@@ -19,6 +19,10 @@ Plug 'aserebryakov/vim-todo-lists'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vimwiki/vimwiki'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'junegunn/fzf' " remember to 'scoop install fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -52,6 +56,10 @@ let g:ctrlp_custom_ignore = { 'dir' : '.*[\/]thirdparty\|node_modules\|bin\|\.gi
 set laststatus=2 " always show the status bar
 let g:airline_powerline_fonts=1
 
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 """""""""""""""""""""""""""""""""""""""""""""
 """""""" RAINBOW PARENTHESES IMPROVED """""""
