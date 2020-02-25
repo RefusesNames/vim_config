@@ -25,14 +25,21 @@ Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
-let g:gitgutter_git_executable = 'C:\Program Files\Git\bin\git.exe'
-
-
 let g:VimTodoListsMoveItems = 0
 let g:vimwiki_list = [{'path': '~/Desktop/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 let mapleader = "\<Space>"
+
+
+""""""""""""""""""""""""""
+""""""" GIT GUTTER """""""
+""""""""""""""""""""""""""
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = 'ﰣ'
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_modified_removed = 'ww'
 
 """""""""""""""""""
 """"""" FZF """""""
@@ -204,6 +211,9 @@ language en_US
 filetype plugin on
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 """ COC """
+
+
+
 "if hidden is not set, TextEdit might fail.
 set hidden
 
