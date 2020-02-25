@@ -5,7 +5,6 @@ filetype off                  " required
 set rtp+=~/AppData/Local/nvim/autoload/vim-plug.vim
 call plug#begin('C:/Neovim/bundle')
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'luochen1990/rainbow'
 Plug 'nightsense/vrunchbang'
@@ -33,21 +32,59 @@ let g:VimTodoListsMoveItems = 0
 let g:vimwiki_list = [{'path': '~/Desktop/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+let mapleader = "\<Space>"
+
+"""""""""""""""""""
+""""""" FZF """""""
+"""""""""""""""""""
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>. :AgIn 
+
+nnoremap <silent> K :call SearchWordWithAg()<CR>
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
+
+function! SearchWordWithAg()
+    execute 'Ag' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithAg() range
+    let old_reg = getreg('"')
+    let old_regtype = getregtype('"')
+    let old_clipboard = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', old_reg, old_regtype)
+    let &clipboard = old_clipboard
+    execute 'Ag' selection
+endfunction
+
+function! SearchWithAgInDirectory(...)
+    call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+endfunction
+command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
+
 """"""""""""""""""""""""""
 """"""" APPEARANCE """""""
 """"""""""""""""""""""""""
 colorscheme vrunchbang-dark
 
 set encoding=utf-8 " necessary for powerline symbols to show under windows
-
-
-"""""""""""""""""""""""
-"""""""" CTRL-P """""""
-"""""""""""""""""""""""
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPLastMode'
-let g:ctrlp_extensions = ['line']
-let g:ctrlp_custom_ignore = { 'dir' : '.*[\/]thirdparty\|node_modules\|bin\|\.git\|\.vscode|vendor'}
 
 
 """"""""""""""""""""""""
