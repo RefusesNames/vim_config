@@ -5,9 +5,7 @@ filetype off                  " required
 set rtp+=~/AppData/Local/nvim/autoload/vim-plug.vim
 call plug#begin('C:/Neovim/bundle')
 
-Plug 'vim-airline/vim-airline'
 Plug 'luochen1990/rainbow'
-Plug 'nightsense/vrunchbang'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
@@ -22,6 +20,8 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/fzf' " remember to 'scoop install fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -82,21 +82,18 @@ command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
 """"""""""""""""""""""""""
 """"""" APPEARANCE """""""
 """"""""""""""""""""""""""
-colorscheme vrunchbang-dark
+colorscheme iceberg
 
 set encoding=utf-8 " necessary for powerline symbols to show under windows
 
 
-""""""""""""""""""""""""
-"""""""" AIRLINE """""""
-""""""""""""""""""""""""
+""""""""""""""""""""""""""
+"""""""" LIGHTLINE """""""
+""""""""""""""""""""""""""
 set laststatus=2 " always show the status bar
-let g:airline_powerline_fonts=1
-
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ }
 
 """""""""""""""""""""""""""""""""""""""""""""
 """""""" RAINBOW PARENTHESES IMPROVED """""""
