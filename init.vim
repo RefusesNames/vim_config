@@ -31,6 +31,7 @@ let g:vimwiki_list = [{'path': '~/Desktop/vimwiki/',
 
 let mapleader = "\<Space>"
 
+command! JsonPrettify :%!python -m json.tool
 
 """"""""""""""""""""""""""
 """"""" GIT GUTTER """""""
