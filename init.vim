@@ -40,21 +40,23 @@ let g:gitgutter_sign_added = ''
 let g:gitgutter_sign_modified = 'ﰣ'
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_removed_first_line = ''
-let g:gitgutter_sign_modified_removed = 'ww'
+let g:gitgutter_sign_modified_removed = ''
 
 """""""""""""""""""
 """"""" FZF """""""
 """""""""""""""""""
 let g:fzf_nvim_statusline = 0 " disable statusline overwriting
 
-nnoremap <silent> <leader><space> :Files<CR>
-nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader><space> :GFiles<CR>
+nnoremap <silent> <leader>F :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>A :Windows<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+"nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :Ag<CR>
 nnoremap <silent> <leader>. :AgIn 
 
 nnoremap <silent> K :call SearchWordWithAg()<CR>
