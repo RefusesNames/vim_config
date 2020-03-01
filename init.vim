@@ -2,8 +2,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/AppData/Local/nvim/autoload/vim-plug.vim
-call plug#begin('C:/Neovim/bundle')
+set rtp+=$MYVIMRC/../autoload/vim-plug.vim
+call plug#begin('~/Neovim/bundle')
 
 Plug 'luochen1990/rainbow'
 Plug 'scrooloose/nerdcommenter'
@@ -188,7 +188,6 @@ set autoread       " automatically read file changes from outside
 au FocusGained * :checktime
 set noswapfile
 
-language en_US
 
 ""set shell=wsl
 "set shell=powershell shellquote=( shellpipe=\| shellxquote= shellredir=>
