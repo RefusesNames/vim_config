@@ -2,6 +2,9 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+let g:coc_global_extensions = [ 'coc-json', 'coc-highlight', 'coc-snippets', 'coc-explorer' ]
+
+
 set rtp+=$MYVIMRC/../autoload/vim-plug.vim
 call plug#begin('~/Neovim/bundle')
 
@@ -215,8 +218,6 @@ filetype plugin on
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 """ COC """
 
-
-
 "if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -349,6 +350,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " ignore packages with vimgrep
 set wildignore+=**/vendor/**,**/node_modules/**
 
+nmap <space>e :CocCommand explorer<CR>
 
 syntax match phpNiceRelation "=>" conceal cchar=⇛
 syntax match phpNiceMemberSelector "\->" conceal cchar=→
