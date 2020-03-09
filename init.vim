@@ -29,8 +29,14 @@ Plug 'itchyny/lightline.vim'
 call plug#end()
 
 let g:VimTodoListsMoveItems = 0
-let g:vimwiki_list = [{'path': '~/Desktop/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [
+    \ {'path': '~/Desktop/vimwiki/', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/Desktop/wikis/general/', 'syntax': 'markdown', 'ext':'.md'},
+    \ {'path': '~/Desktop/wikis/beck/', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/Desktop/wikis/gleif/', 'syntax': 'markdown', 'ext': '.md'},
+    \ {'path': '~/Desktop/wikis/carrera/', 'syntax': 'markdown', 'ext':'.md'}
+\]
+call vimwiki#vars#init()
 
 let mapleader = "\<Space>"
 
