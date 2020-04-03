@@ -19,12 +19,11 @@ Plug 'aserebryakov/vim-todo-lists'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vimwiki/vimwiki'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/fzf' " remember to 'scoop install fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -42,6 +41,8 @@ let mapleader = "\<Space>"
 
 command! JsonPrettify :%!python -m json.tool
 nnoremap <leader>n :nohlsearch<CR>
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 """"""""""""""""""""""""""
 """"""" GIT GUTTER """""""
