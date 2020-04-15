@@ -151,10 +151,9 @@ nnoremap <C-H> <C-W><C-H>
 """"""""""""""""""""""""""""
 """""""" INDENTATION """""""
 """"""""""""""""""""""""""""
-set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
-set expandtab
-"set noexpandtab     " Use actual <Tab> instead of spaces for indentation
+set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
+set noexpandtab     " Use actual <Tab> instead of spaces for indentation
 set smarttab        " When on, a <Tab> in front of a line inserts blanks
 " according to 'shiftwidth'. 'tabstop' is used in other
 " places. A <BS> will delete a 'shiftwidth' worth of space
