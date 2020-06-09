@@ -4,36 +4,7 @@ filetype off                  " required
 
 let g:coc_global_extensions = [ 'coc-json', 'coc-highlight', 'coc-snippets', 'coc-explorer' ]
 
-
-set rtp+=$MYVIMRC/../autoload/vim-plug.vim
-call plug#begin('~/Neovim/bundle')
-
-Plug 'luochen1990/rainbow'
-Plug 'scrooloose/nerdcommenter'
-Plug 'airblade/vim-gitgutter'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'stanangeloff/php.vim'
-Plug 'aserebryakov/vim-todo-lists'
-Plug 'sirver/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'vimwiki/vimwiki'
-Plug 'junegunn/fzf' " remember to 'scoop install fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'editorconfig/editorconfig-vim'
-
-call plug#end()
-
-let g:VimTodoListsMoveItems = 0
-let g:vimwiki_list = [
-    \ {'path': '~/Desktop/wikis/general/', 'auto-toc': 1},
-\]
-call vimwiki#vars#init()
-:map <Leader>tt <Plug>VimwikiToggleListItem
-
+set encoding=utf-8 " necessary for powerline symbols to show under windows
 let mapleader = "\<Space>"
 
 command! JsonPrettify :%!python -m json.tool
@@ -44,170 +15,23 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 set splitright
 set splitbelow
 
-command! Vterm :vertical terminal
-command! Sterm :split terminal
+
+set rtp+=$MYVIMRC/../autoload/vim-plug.vim
 
 
 
-""""""""""""""""""""""""""
-""""""" GIT GUTTER """""""
-""""""""""""""""""""""""""
-let g:gitgutter_sign_added = ''
-let g:gitgutter_sign_modified = 'ﰣ'
-let g:gitgutter_sign_removed = ''
-let g:gitgutter_sign_removed_first_line = ''
-let g:gitgutter_sign_modified_removed = ''
+call plug#begin('~/Neovim/bundle')
 
-"""""""""""""""""""
-""""""" FZF """""""
-"""""""""""""""""""
-let g:fzf_nvim_statusline = 0 " disable statusline overwriting
-
-nnoremap <silent> <leader><space> :GFiles<CR>
-nnoremap <silent> <leader>F :Files<CR>
-nnoremap <silent> <leader>b :Buffers<CR>
-nnoremap <silent> <leader>A :Windows<CR>
-nnoremap <silent> <leader>; :BLines<CR>
-nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>O :Tags<CR>
-nnoremap <silent> <leader>? :History<CR>
-"nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-nnoremap <silent> <leader>/ :Ag<CR>
-nnoremap <silent> <leader>. :AgIn 
-
-nnoremap <silent> K :call SearchWordWithAg()<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
-nnoremap <silent> <leader>gl :Commits<CR>
-nnoremap <silent> <leader>ga :BCommits<CR>
-nnoremap <silent> <leader>ft :Filetypes<CR>
-
-imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-imap <C-x><C-l> <plug>(fzf-complete-line)
-
-function! SearchWordWithAg()
-    execute 'Ag' expand('<cword>')
-endfunction
-
-function! SearchVisualSelectionWithAg() range
-    let old_reg = getreg('"')
-    let old_regtype = getregtype('"')
-    let old_clipboard = &clipboard
-    set clipboard&
-    normal! ""gvy
-    let selection = getreg('"')
-    call setreg('"', old_reg, old_regtype)
-    let &clipboard = old_clipboard
-    execute 'Ag' selection
-endfunction
-
-function! SearchWithAgInDirectory(...)
-    call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
-endfunction
-command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
-
-""""""""""""""""""""""""""
-""""""" APPEARANCE """""""
-""""""""""""""""""""""""""
-colorscheme iceberg
-
-set encoding=utf-8 " necessary for powerline symbols to show under windows
-
-
-""""""""""""""""""""""""""
-"""""""" LIGHTLINE """""""
-""""""""""""""""""""""""""
-set laststatus=2 " always show the status bar
-let g:lightline = {
-      \ 'colorscheme': 'iceberg',
-      \ }
-
-"""""""""""""""""""""""""""""""""""""""""""""
-"""""""" RAINBOW PARENTHESES IMPROVED """""""
-"""""""""""""""""""""""""""""""""""""""""""""
-let g:rainbow_active = 1
-
-""""""""""""""""""""""""""
-"""""""" ULTISNIPS """""""
-""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:UltiSnipsSnippetDirectories=["C:\Neovim\bundle\vim-snippets\UltiSnips","C:\Neovim\snippets"]
-
-let g:UltiSnipsEditSplit="vertical"
-
-""""""""""""""""""""""""""""
-"""""""" KEYBINDINGS """""""
-""""""""""""""""""""""""""""
-" More intuitive navigation when lines are wrapped
-nnoremap k gk
-nnoremap j gj
-nnoremap 0 g0
-nnoremap $ g$
-
-" Easier split navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-
-""""""""""""""""""""""""""""
-"""""""" INDENTATION """""""
-""""""""""""""""""""""""""""
-set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
-set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
-set noexpandtab     " Use actual <Tab> instead of spaces for indentation
-set smarttab        " When on, a <Tab> in front of a line inserts blanks
-" according to 'shiftwidth'. 'tabstop' is used in other
-" places. A <BS> will delete a 'shiftwidth' worth of space
-" at the start of the line.
-set autoindent      " Copy indent from current line when starting a new line
-" (typing <CR> in Insert mode or when using the "o" or "O"
-" command).
-set breakindent     " when wrapping a line, consider indentation
-
-
-"""""""""""""""""""""""""""""
-"""""""" LINE NUMBERS """""""
-"""""""""""""""""""""""""""""
-set number          " Show absolute line numbers.
-set relativenumber	" Show relative line numbers.
-
-
-"""""""""""""""""""""""
-"""""""" SEARCH """""""
-"""""""""""""""""""""""
-set incsearch       " While typing a search command, show immediately where the
-set ignorecase
-set smartcase       " Override the 'ignorecase' option if the search pattern
+Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-fugitive'
 
 
 
-set formatoptions=c,q,r,t " This is a sequence of letters which describes how
-" automatic formatting is to be done.
-"
-" letter    meaning when present in 'formatoptions'
-" ------    ---------------------------------------
-" c         Auto-wrap comments using textwidth, inserting
-"           the current comment leader automatically.
-" q         Allow formatting of comments with "gq".
-" r         Automatically insert the current comment leader
-"           after hitting <Enter> in Insert mode.
-" t         Auto-wrap text using textwidth (does not apply
-"           to comments)
-set wrap           " this enables 'visual' wrapping
-set autoread       " automatically read file changes from outside
-" 'fixes' autoread, see: https://github.com/neovim/neovim/issues/1936
-au FocusGained * :checktime
-set noswapfile
-
-
-filetype plugin on
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-""" COC """
-
+""""""""""""""""""""
+"""""""" COC """""""
+""""""""""""""""""""
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "if hidden is not set, TextEdit might fail.
 set hidden
 
@@ -337,12 +161,211 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+nmap <space>e :CocCommand explorer<CR>
+
+
+
+"""""""""""""""""""""""""
+"""""""" SNIPPETS """""""
+"""""""""""""""""""""""""
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:UltiSnipsSnippetDirectories=["C:\Neovim\bundle\vim-snippets\UltiSnips","C:\Neovim\snippets"]
+
+let g:UltiSnipsEditSplit="vertical"
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+"""""""" RAINBOW PARENTHESES IMPROVED """""""
+"""""""""""""""""""""""""""""""""""""""""""""
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1
+
+
+
+
+""""""""""""""""""""""""""
+""""""" GIT GUTTER """""""
+""""""""""""""""""""""""""
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_sign_added = ''
+let g:gitgutter_sign_modified = 'ﰣ'
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = ''
+let g:gitgutter_sign_modified_removed = ''
+
+
+
+
+""""""""""""""""""""""""
+""""""" VIM WIKI """""""
+""""""""""""""""""""""""
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [
+    \ {'path': '~/Desktop/wikis/general/', 'auto-toc': 1},
+\]
+call vimwiki#vars#init()
+:map <Leader>tt <Plug>VimwikiToggleListItem
+
+
+
+"""""""""""""""""""
+""""""" FZF """""""
+"""""""""""""""""""
+Plug 'junegunn/fzf' " remember to 'scoop install fzf'
+Plug 'junegunn/fzf.vim'
+let g:fzf_nvim_statusline = 0 " disable statusline overwriting
+
+nnoremap <silent> <leader><space> :GFiles<CR>
+nnoremap <silent> <leader>F :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+"nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :Ag<CR>
+nnoremap <silent> <leader>. :AgIn 
+
+nnoremap <silent> K :call SearchWordWithAg()<CR>
+vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader>ft :Filetypes<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
+
+function! SearchWordWithAg()
+    execute 'Ag' expand('<cword>')
+endfunction
+
+function! SearchVisualSelectionWithAg() range
+    let old_reg = getreg('"')
+    let old_regtype = getregtype('"')
+    let old_clipboard = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', old_reg, old_regtype)
+    let &clipboard = old_clipboard
+    execute 'Ag' selection
+endfunction
+
+function! SearchWithAgInDirectory(...)
+    call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+endfunction
+command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
+
+
+
+""""""""""""""""""""""""""
+""""""" APPEARANCE """""""
+""""""""""""""""""""""""""
+Plug 'cocopon/iceberg.vim'
+colorscheme iceberg
+
+
+
+""""""""""""""""""""""""""
+"""""""" LIGHTLINE """""""
+""""""""""""""""""""""""""
+Plug 'itchyny/lightline.vim'
+set laststatus=2 " always show the status bar
+let g:lightline = {
+      \ 'colorscheme': 'iceberg',
+      \ }
+
+Plug 'editorconfig/editorconfig-vim'
+
+call plug#end()
+
+
+
+
+""""""""""""""""""""""""""""
+"""""""" KEYBINDINGS """""""
+""""""""""""""""""""""""""""
+" More intuitive navigation when lines are wrapped
+nnoremap k gk
+nnoremap j gj
+nnoremap 0 g0
+nnoremap $ g$
+
+" Easier split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+
+""""""""""""""""""""""""""""
+"""""""" INDENTATION """""""
+""""""""""""""""""""""""""""
+set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
+set shiftwidth=2    " Number of spaces to use for each step of (auto)indent.
+set noexpandtab     " Use actual <Tab> instead of spaces for indentation
+set smarttab        " When on, a <Tab> in front of a line inserts blanks
+" according to 'shiftwidth'. 'tabstop' is used in other
+" places. A <BS> will delete a 'shiftwidth' worth of space
+" at the start of the line.
+set autoindent      " Copy indent from current line when starting a new line
+" (typing <CR> in Insert mode or when using the "o" or "O"
+" command).
+set breakindent     " when wrapping a line, consider indentation
+
+
+
+"""""""""""""""""""""""""""""
+"""""""" LINE NUMBERS """""""
+"""""""""""""""""""""""""""""
+set number          " Show absolute line numbers.
+set relativenumber	" Show relative line numbers.
+
+
+
+"""""""""""""""""""""""
+"""""""" SEARCH """""""
+"""""""""""""""""""""""
+set incsearch       " While typing a search command, show immediately where the
+set ignorecase
+set smartcase       " Override the 'ignorecase' option if the search pattern
+
+
+
+"""""""""""""""""""""""
+"""""""" FORMAT """""""
+"""""""""""""""""""""""
+set formatoptions=c,q,r,t " This is a sequence of letters which describes how
+" automatic formatting is to be done.
+"
+" letter    meaning when present in 'formatoptions'
+" ------    ---------------------------------------
+" c         Auto-wrap comments using textwidth, inserting
+"           the current comment leader automatically.
+" q         Allow formatting of comments with "gq".
+" r         Automatically insert the current comment leader
+"           after hitting <Enter> in Insert mode.
+" t         Auto-wrap text using textwidth (does not apply
+"           to comments)
+set wrap           " this enables 'visual' wrapping
+set autoread       " automatically read file changes from outside
+" 'fixes' autoread, see: https://github.com/neovim/neovim/issues/1936
+au FocusGained * :checktime
+set noswapfile
+
+
+filetype plugin on
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+
 " ignore packages with vimgrep
 set wildignore+=**/vendor/**,**/node_modules/**
 
-nmap <space>e :CocCommand explorer<CR>
-
-syntax match phpNiceRelation "=>" conceal cchar=⇛
-syntax match phpNiceMemberSelector "\->" conceal cchar=→
-
-set conceallevel=2
