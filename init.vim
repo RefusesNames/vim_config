@@ -207,9 +207,9 @@ let g:gitgutter_sign_modified_removed = ''
 """"""""""""""""""""""""
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [
-    \ {'path': '~/Desktop/wikis/general/', 'auto-toc': 1},
+    \ {'path': '~/wikis/general/', 'auto-toc': 1},
 \]
-call vimwiki#vars#init()
+"call vimwiki#vars#init()
 :map <Leader>tt <Plug>VimwikiToggleListItem
 
 
@@ -269,7 +269,6 @@ command! -nargs=+ -complete=dir AgIn call SearchWithAgInDirectory(<f-args>)
 """"""" APPEARANCE """""""
 """"""""""""""""""""""""""
 Plug 'cocopon/iceberg.vim'
-colorscheme iceberg
 
 
 
@@ -369,3 +368,4 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " ignore packages with vimgrep
 set wildignore+=**/vendor/**,**/node_modules/**
 
+colorscheme iceberg
