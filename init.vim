@@ -369,3 +369,10 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 set wildignore+=**/vendor/**,**/node_modules/**
 
 colorscheme iceberg
+
+" see ':h shell-powershell' and
+" https://github.com/junegunn/vim-plug/issues/895#issuecomment-544130552
+let &shell = has('win32') ? 'powershell.exe' : 'pwsh.exe'
+set shellquote= shellpipe=\| shellxquote=
+set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
+set shellredir=\|\ Out-File\ -Encoding\ UTF8
