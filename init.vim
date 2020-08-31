@@ -215,7 +215,6 @@ let g:vimwiki_list = [
     \ {'path': '~/Desktop/wikis/gleif/', 'syntax': 'markdown', 'ext': '.md'},
     \ {'path': '~/Desktop/wikis/carrera/', 'syntax': 'markdown', 'ext':'.md'}
 \]
-call vimwiki#vars#init()
 :map <Leader>tt <Plug>VimwikiToggleListItem
 
 
