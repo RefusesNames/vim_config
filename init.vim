@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 luafile C:/Users/jerom/AppData/Local/nvim/lua/init.lua
 
 if has("win64") || has("win32")

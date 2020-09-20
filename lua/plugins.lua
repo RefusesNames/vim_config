@@ -12,6 +12,12 @@ packer.startup(function()
 	use { 'mizux/vim-colorschemes', opt=true }
 	use { 'norcalli/nvim-colorizer.lua', as='colorizer', config=function() require('colorizer').setup() end }
 	use { 'neovim/nvim-lspconfig', config=configureLanguageServer }
+	
+	-- TODO: maybe replace with lua equivalents:
+	use {
+		'junegunn/fzf.vim',
+		requires = { {'junegunn/fzf'} }
+	}
 end)
 
 function configureLanguageServer()
@@ -23,6 +29,5 @@ function configureLanguageServer()
 	-- typescript
 	lsp.tsserver.setup{}
 end
-
 
 return packer

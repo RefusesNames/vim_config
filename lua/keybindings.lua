@@ -26,3 +26,5 @@ vim.api.nvim_set_keymap('n', '$', 'g$', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 
 
+-- FZF
+vim.api.nvim_set_keymap('n', '<space><space>', ':GitFiles<CR>', { noremap = true, silent = true })
