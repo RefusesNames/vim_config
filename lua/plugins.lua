@@ -12,22 +12,32 @@ packer.startup(function()
 	use { 'mizux/vim-colorschemes', opt=true }
 	use { 'norcalli/nvim-colorizer.lua', as='colorizer', config=function() require('colorizer').setup() end }
 	use { 'neovim/nvim-lspconfig', config=configureLanguageServer }
+	use { 'nvim-lua/completion-nvim' }
 	
 	-- TODO: maybe replace with lua equivalents:
 	use {
 		'junegunn/fzf.vim',
 		requires = { {'junegunn/fzf'} }
 	}
+
 end)
 
 function configureLanguageServer()
 	local lsp = require('nvim_lsp')
+
 	-- lua
+	-- compile from here: https://github.com/sumneko/lua-language-server
 	lsp.sumneko_lua.setup{
 		cmd={ 'D:\\bin\\lua-language-server\\lua-language-server.exe' }
 	}
+
 	-- typescript
-	lsp.tsserver.setup{}
+	-- npm install -g typescript-language-server
+	lsp.tsserver.setup{on_attach=require('completion').on_attach}
+
+	-- html
+	-- npm install -g vscode-html-languageserver-bin
+	lsp.html.setup{on_attach=require('completion').on_attach}
 end
 
 return packer

@@ -15,6 +15,10 @@ vim.api.nvim_set_option('filetype', 'on')
 -- highlight syntax
 vim.api.nvim_set_option('syntax', 'on')
 
--- use LSP for omnifunc for typescript
+-- use LSP for omnifunc for typescript and html
 vim.api.nvim_command('autocmd Filetype typescript setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+vim.api.nvim_command('autocmd Filetype html setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+
+
+-- use english vim
 vim.api.nvim_command('language en_US')
