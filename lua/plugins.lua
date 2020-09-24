@@ -44,6 +44,10 @@ function configureLanguageServer()
 	-- html
 	-- npm install -g vscode-html-languageserver-bin
 	lsp.html.setup{on_attach=require('completion').on_attach}
+
+	-- php
+	-- npm install -g intelephense
+	lsp.intelephense.setup{on_attach=require('completion').on_attach}
 end
 
 return packer
