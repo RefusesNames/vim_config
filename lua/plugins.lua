@@ -28,6 +28,11 @@ function configureLanguageServer()
 	}
 	-- typescript
 	lsp.tsserver.setup{}
+
+	-- c#
+	lsp.omnisharp.setup{
+		cmd = { "C:\\bin\\omnisharp\\omnisharp.exe", "--languageserver", "--hostPID", "2801" }
+	}
 end
 
 return packer
