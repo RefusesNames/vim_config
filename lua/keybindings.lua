@@ -32,3 +32,11 @@ vim.api.nvim_set_keymap('n', '<space>F', ':Files<CR>', { noremap = true, silent 
 vim.api.nvim_set_keymap('n', '<space>b', ':Buffers<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<space>/', ':Ag<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<space>c', ':Commits<CR>', { noremap = true, silent = true })
+
+
+
+
+-- don't know yet
+vim.api.nvim_set_keymap('n', '<space>e', ':Explore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<space>r', ':Vexplore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<space>t', ':split | terminal<CR>', { noremap = true, silent = true })
