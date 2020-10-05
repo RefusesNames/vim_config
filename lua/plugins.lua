@@ -48,6 +48,10 @@ function configureLanguageServer()
 	-- php
 	-- npm install -g intelephense
 	lsp.intelephense.setup{on_attach=require('completion').on_attach}
+
+	-- cmake
+	-- pip install cmake-language-server
+	lsp.cmake.setup{}
 end
 
 return packer
