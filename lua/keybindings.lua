@@ -34,6 +34,9 @@ vim.api.nvim_set_keymap('n', '<space>/', ':Ag<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<space>c', ':Commits<CR>', { noremap = true, silent = true })
 
 
+-- Rainbow Levels
+vim.api.nvim_set_keymap('n', '<space>l', ':RainbowLevelsToggle<CR>', { noremap = true, silent = true })
+
 
 
 -- don't know yet

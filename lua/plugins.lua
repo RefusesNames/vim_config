@@ -20,6 +20,8 @@ packer.startup(function()
 		requires = { {'junegunn/fzf'} }
 	}
 
+	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
+
 end)
 
 function configureLanguageServer()
