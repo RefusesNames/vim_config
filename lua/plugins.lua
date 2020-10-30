@@ -13,6 +13,8 @@ packer.startup(function()
 	use { 'norcalli/nvim-colorizer.lua', as='colorizer', config=function() require('colorizer').setup() end }
 	use { 'neovim/nvim-lspconfig', config=configureLanguageServer }
 	use { 'nvim-lua/completion-nvim' }
+
+	use { 'tpope/vim-commentary' }
 	
 	-- TODO: maybe replace with lua equivalents:
 	use {

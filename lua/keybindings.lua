@@ -38,8 +38,12 @@ vim.api.nvim_set_keymap('n', '<space>c', ':Commits<CR>', { noremap = true, silen
 vim.api.nvim_set_keymap('n', '<space>l', ':RainbowLevelsToggle<CR>', { noremap = true, silent = true })
 
 
+-- Commentary
+vim.api.nvim_set_keymap('n', '<space>c', 'gcc', { noremap = false, silent = true })
+
 
 -- don't know yet
 vim.api.nvim_set_keymap('n', '<space>e', ':Explore<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<space>r', ':Vexplore<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<space>t', ':split | terminal<CR>', { noremap = true, silent = true })
+
