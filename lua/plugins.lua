@@ -11,6 +11,7 @@ packer.startup(function()
 	use { 'wbthomason/packer.nvim', opt=true }
 	use { 'mizux/vim-colorschemes', opt=true }
 	use { 'norcalli/nvim-colorizer.lua', as='colorizer', config=function() require('colorizer').setup() end }
+	-- use { 'neovim/nvim-lspconfig', config=configureLanguageServer }
 	use { 'neovim/nvim-lspconfig', config=configureLanguageServer }
 	use { 'nvim-lua/completion-nvim' }
 
