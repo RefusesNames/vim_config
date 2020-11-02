@@ -40,6 +40,7 @@ vim.api.nvim_set_keymap('n', '<space>l', ':RainbowLevelsToggle<CR>', { noremap =
 
 -- Commentary
 vim.api.nvim_set_keymap('n', '<space>c', 'gcc', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<space>c', 'gc', { noremap = false, silent = true })
 
 
 -- don't know yet
