@@ -43,8 +43,12 @@ vim.api.nvim_set_keymap('n', '<space>/', 'gcc', { noremap = false, silent = true
 vim.api.nvim_set_keymap('v', '<space>/', 'gc', { noremap = false, silent = true })
 
 
--- don't know yet
+-- Explorer
 vim.api.nvim_set_keymap('n', '<space>e', ':Explore<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<space>r', ':Vexplore<CR>', { noremap = true, silent = true })
+
+-- Terminal
 vim.api.nvim_set_keymap('n', '<space>t', ':split | terminal<CR>', { noremap = true, silent = true })
 
+-- Utility
+vim.api.nvim_set_keymap('n', '<space>n', ':nohlsearch<CR>', { noremap = true, silent = true })
