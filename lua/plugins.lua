@@ -4,8 +4,6 @@ vim.o.packpath = vim.o.runtimepath
 
 vim.cmd [[packadd packer.nvim]]
 
-vim._update_package_paths()
-
 local packer = require('packer')
 packer.startup(function()
 	use { 'wbthomason/packer.nvim', opt=true }
