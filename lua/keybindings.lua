@@ -52,3 +52,7 @@ vim.api.nvim_set_keymap('n', '<space>t', ':split | terminal<CR>', { noremap = tr
 
 -- Utility
 vim.api.nvim_set_keymap('n', '<space>n', ':nohlsearch<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
+
