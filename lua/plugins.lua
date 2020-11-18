@@ -59,6 +59,11 @@ function configureLanguageServer()
 	-- php
 	-- npm install -g intelephense
 	lsp.intelephense.setup{on_attach=require('completion').on_attach}
+	
+
+	-- latex
+	-- scoop install texlab
+	lsp.texlab.setup{on_attach=require('completion').on_attach}
 
 	-- cmake
 	-- pip install cmake-language-server
