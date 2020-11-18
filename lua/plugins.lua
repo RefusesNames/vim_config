@@ -21,6 +21,14 @@ packer.startup(function()
 		requires = { {'junegunn/fzf'} }
 	}
 
+	use {
+		'benwainwright/fzf-project',
+		requires = {
+			{'junegunn/fzf'},
+			{'tpope/vim-fugitive'}
+		}
+	}
+
 	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
 
 end)

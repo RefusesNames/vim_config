@@ -10,3 +10,5 @@ if has("win64") || has("win32")
 	set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 	set shellredir=\|\ Out-File\ -Encoding\ UTF8
 endif
+
+let g:fzfSwitchProjectWorkspaces = [ 'C:/projects', '~/AppData/Local/nvim' ]
