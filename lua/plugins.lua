@@ -29,6 +29,8 @@ packer.startup(function()
 		}
 	}
 
+	use {	'liuchengxu/vim-which-key' }
+
 	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
 
 end)

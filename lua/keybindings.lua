@@ -27,35 +27,39 @@ vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 
 
 -- FZF
-vim.api.nvim_set_keymap('n', '<space><space>', ':GitFiles<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>F', ':Files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>b', ':Buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>/', ':Ag<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>c', ':Commits<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><space>', ':GitFiles<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>F', ':Files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', ':Ag<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>c', ':Commits<CR>', { noremap = true, silent = true })
 
 
 -- FZF Project
-vim.api.nvim_set_keymap('n', '<space>p', ':FzfSwitchProject<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':FzfSwitchProject<CR>', { noremap = true, silent = true })
+
+
+-- Which
+vim.api.nvim_set_keymap('n', '<leader>', ":WhichKey '<Space>'<CR>", { noremap = true, silent = true })
 
 
 -- Rainbow Levels
-vim.api.nvim_set_keymap('n', '<space>l', ':RainbowLevelsToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>l', ':RainbowLevelsToggle<CR>', { noremap = true, silent = true })
 
 
 -- Commentary
-vim.api.nvim_set_keymap('n', '<space>/', 'gcc', { noremap = false, silent = true })
-vim.api.nvim_set_keymap('v', '<space>/', 'gc', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true })
 
 
 -- Explorer
-vim.api.nvim_set_keymap('n', '<space>e', ':Explore<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<space>r', ':Vexplore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':Vexplore<CR>', { noremap = true, silent = true })
 
 -- Terminal
-vim.api.nvim_set_keymap('n', '<space>t', ':split | terminal<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', ':split | terminal<CR>', { noremap = true, silent = true })
 
 -- Utility
-vim.api.nvim_set_keymap('n', '<space>n', ':nohlsearch<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
