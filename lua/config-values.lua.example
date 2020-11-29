@@ -1,0 +1,4 @@
+return {
+	workspace_folders = { "D:\\Projekte" }
+	bin_directory = { "C:\\bin" }
+}
