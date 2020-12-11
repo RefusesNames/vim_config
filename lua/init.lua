@@ -27,7 +27,7 @@ vim.api.nvim_command('autocmd Filetype cmake setlocal omnifunc=v:lua.vim.lsp.omn
 
 
 -- use english vim
-vim.api.nvim_command('language en_US')
+-- vim.api.nvim_command('language en_US')
 
 
 vim.api.nvim_set_var('fzfSwitchProjectWorkspaces', config_values.workspace_folders)

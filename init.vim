@@ -1,6 +1,6 @@
 let mapleader = "\<Space>"
 
-luafile ~/AppData/Local/nvim/lua/init.lua
+luafile ~/.config/nvim/lua/init.lua
 
 if has("win64") || has("win32")
 	" see ':h shell-powershell' and
