@@ -1,5 +1,5 @@
 -- TODO: find more general way to do this. Maybe '~/nvim/packages'
-vim.o.runtimepath = vim.o.runtimepath ..',~\\AppData\\Local\\nvim\\packages'
+vim.o.runtimepath = vim.o.runtimepath ..',/home/jerome/.config/nvim/packages'
 vim.o.packpath = vim.o.runtimepath
 
 vim.cmd [[packadd packer.nvim]]
