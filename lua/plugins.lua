@@ -14,7 +14,7 @@ packer.startup(function()
 	use { 'nvim-lua/completion-nvim' }
 
 	use { 'tpope/vim-commentary' }
-	use { 'tpope/fugitive', branch='main' }
+	use { 'tpope/vim-fugitive' }
 	
 	-- TODO: maybe replace with lua equivalents:
 	use {
