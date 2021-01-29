@@ -6,6 +6,15 @@ require('plugins')
 require('appearance')
 require('keybindings')
 
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+	indent = { enable = true },
+}
+
 -- detect the filetype
 vim.api.nvim_set_option('filetype', 'on')
 
@@ -19,11 +28,8 @@ vim.api.nvim_set_option('syntax', 'on')
 
 vim.api.nvim_set_option('timeoutlen', 400)
 
--- use LSP for omnifunc for typescript and html
+-- use LSP for omnifunc for typescript
 vim.api.nvim_command('autocmd Filetype typescript setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd Filetype cs setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd Filetype html setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd Filetype cmake setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 
 
 -- use english vim
