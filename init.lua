@@ -52,6 +52,8 @@ vim.api.nvim_command('autocmd Filetype typescript setlocal omnifunc=v:lua.vim.ls
 -- use english vim
 -- vim.api.nvim_command('language en_US')
 
+vim.api.nvim_set_option('ignorecase', true)
+vim.api.nvim_set_option('smartcase', true)
 
 vim.api.nvim_set_var('fzfSwitchProjectWorkspaces', config_values.workspace_folders)
 vim.api.nvim_set_var('fzfSwitchProjectAlwaysChooseFile', false)
