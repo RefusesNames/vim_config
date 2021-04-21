@@ -34,6 +34,10 @@ vim.api.nvim_set_keymap('n', '<leader>/', ':Telescope grep_string<CR>', { norema
 vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope git_commits<CR>', { noremap = true, silent = true })
 
 
+-- TrueZen
+vim.api.nvim_set_keymap('n', '<leader>z', ":TZAtaraxis<CR>", { noremap = true, silent = true })
+
+
 -- Which
 vim.api.nvim_set_keymap('n', '<leader>', ":WhichKey '<Space>'<CR>", { noremap = true, silent = true })
 

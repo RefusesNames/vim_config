@@ -19,6 +19,8 @@ packer.startup(function()
 
 	use { 'folke/tokyonight.nvim' }
 
+	use { 'kdav5758/TrueZen.nvim' }
+
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
