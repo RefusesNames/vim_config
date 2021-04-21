@@ -7,11 +7,17 @@ vim.cmd [[packadd packer.nvim]]
 local packer = require('packer')
 packer.startup(function()
 	use { 'wbthomason/packer.nvim', opt=true }
-	use { 'mizux/vim-colorschemes', opt=true, branch='main' }
 	use { 'norcalli/nvim-colorizer.lua', as='colorizer', config=function() require('colorizer').setup() end }
 
 	use { 'tpope/vim-commentary' }
 	use { 'tpope/vim-fugitive' }
+
+	use {
+		'hoob3rt/lualine.nvim',
+		requires = {'kyazdani42/nvim-web-devicons', opt = true}
+	}
+
+	use { 'folke/tokyonight.nvim' }
 
 	-- TODO: maybe replace with lua equivalents:
 	use {

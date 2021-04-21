@@ -2,7 +2,17 @@
 vim.wo.number = true
 vim.wo.relativenumber = true
 
-vim.api.nvim_command('colorscheme pencil')
+-- colorscheme
+vim.api.nvim_command('colorscheme tokyonight')
+vim.g.tokyonight_style = 'night'
+
+-- status line
+require('lualine').setup{
+	options = {
+		--theme = require('lualine.themes.ayu_mirage')
+		theme = 'tokyonight'
+	}
+}
 
 -- show popupmenu (also when only one entry) and preview for omnifunc
 vim.o.completeopt = 'menu,menuone,noselect'
