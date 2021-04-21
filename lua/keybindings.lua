@@ -26,16 +26,12 @@ vim.api.nvim_set_keymap('n', '$', 'g$', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 
 
--- FZF
-vim.api.nvim_set_keymap('n', '<leader><space>', ':GitFiles<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>F', ':Files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>/', ':Ag<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>c', ':Commits<CR>', { noremap = true, silent = true })
-
-
--- FZF Project
-vim.api.nvim_set_keymap('n', '<leader>p', ':FzfSwitchProject<CR>', { noremap = true, silent = true })
+-- Telescope
+vim.api.nvim_set_keymap('n', '<leader><space>', ':Telescope git_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>/', ':Telescope grep_string<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope git_commits<CR>', { noremap = true, silent = true })
 
 
 -- Which

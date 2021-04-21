@@ -19,18 +19,9 @@ packer.startup(function()
 
 	use { 'folke/tokyonight.nvim' }
 
-	-- TODO: maybe replace with lua equivalents:
 	use {
-		'junegunn/fzf.vim',
-		requires = { {'junegunn/fzf'} }
-	}
-
-	use {
-		'benwainwright/fzf-project',
-		requires = {
-			{'junegunn/fzf'},
-			{'tpope/vim-fugitive'}
-		}
+		'nvim-telescope/telescope.nvim',
+		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
 	}
 
 	use {	'liuchengxu/vim-which-key' }
