@@ -17,6 +17,11 @@ packer.startup(function()
 		requires = {'kyazdani42/nvim-web-devicons', opt = true}
 	}
 
+	use {
+		'neoclide/coc.nvim',
+		branch = 'release'
+	}
+
 	use { 'folke/tokyonight.nvim' }
 
 	use { 'kdav5758/TrueZen.nvim' }

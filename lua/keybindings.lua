@@ -63,4 +63,3 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
-
