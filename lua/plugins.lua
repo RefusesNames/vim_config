@@ -26,6 +26,8 @@ packer.startup(function()
 
 	use { 'kdav5758/TrueZen.nvim' }
 
+	use { 'editorconfig/editorconfig-vim' }
+
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
