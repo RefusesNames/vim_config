@@ -52,4 +52,4 @@ vim.api.nvim_set_var('fzfSwitchProjectAlwaysChooseFile', false)
 
 
 -- TEMPORARY
-vim.g.coc_global_extensions={ 'coc-omnisharp' }
+vim.g.coc_global_extensions={ 'coc-omnisharp', 'coc-explorer' }

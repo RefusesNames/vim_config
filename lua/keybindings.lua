@@ -52,7 +52,7 @@ vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true
 
 
 -- Explorer
-vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>r', ':Vexplore<CR>', { noremap = true, silent = true })
 
 -- Terminal
@@ -63,3 +63,6 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
+
+-- COC
+vim.api.nvim_set_keymap('n', '<leader>e', ':CocCommand explorer<CR>', { noremap = true, silent = true })
