@@ -21,6 +21,7 @@ packer.startup(function()
 		'neoclide/coc.nvim',
 		branch = 'release'
 	}
+	use { 'rafcamlet/coc-nvim-lua' }
 
 	use { 'folke/tokyonight.nvim' }
 

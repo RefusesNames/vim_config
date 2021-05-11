@@ -22,6 +22,7 @@ local config_values = require('config-values')
 require('plugins')
 require('appearance')
 require('keybindings')
+require('coc_config')
 
 -- detect the filetype
 vim.api.nvim_set_option('filetype', 'on')
