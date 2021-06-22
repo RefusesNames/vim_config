@@ -71,10 +71,13 @@ vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
 --  Symbol renaming.
 -- nmap <leader>rn <Plug>(coc-rename)
+vim.api.nvim_set_keymap('n', '<leader>rn', '<Plug>(coc-rename)', { silent = true })
 
 --  Formatting selected code.
 -- xmap <leader>f  <Plug>(coc-format-selected)
 -- nmap <leader>f  <Plug>(coc-format-selected)
+vim.api.nvim_set_keymap('n', '<leader>f', '<Plug>(coc-format-selected)', { silent = true })
+vim.api.nvim_set_keymap('x', '<leader>f', '<Plug>(coc-format-selected)', { silent = true })
 
 -- augroup mygroup
 --   autocmd!
