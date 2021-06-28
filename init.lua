@@ -15,6 +15,8 @@ endif
 ]],
 true)
 
+vim.api.nvim_set_var('python3_host_prog', '~/scoop/apps/python/current/python.exe')
+
 vim.o.termguicolors = true
 
 local config_values = require('config-values')
