@@ -23,6 +23,8 @@ packer.startup(function()
 	}
 	use { 'rafcamlet/coc-nvim-lua' }
 
+	use { 'sheerun/vim-polyglot' }
+
 	use { 'folke/tokyonight.nvim' }
 
 	use { 'kdav5758/TrueZen.nvim' }
