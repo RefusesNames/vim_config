@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><space>', ':Telescope git_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>/', ':Telescope grep_string<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope git_commits<CR>', { noremap = true, silent = true })
 
 
@@ -66,3 +66,4 @@ vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
 
 -- COC
 vim.api.nvim_set_keymap('n', '<leader>e', ':CocCommand explorer<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>o', ':CocList outline<CR>', { noremap = true, silent = true })
