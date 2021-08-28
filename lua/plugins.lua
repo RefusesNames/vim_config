@@ -24,19 +24,40 @@ packer.startup(function()
 
 	use { 'folke/tokyonight.nvim' }
 
-	use { 'kdav5758/TrueZen.nvim' }
-
 	use { 'editorconfig/editorconfig-vim' }
 
 	use {
 		'nvim-telescope/telescope.nvim',
-		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }}
 	}
 
 	use {	'liuchengxu/vim-which-key' }
 
 	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
 
+	use {
+		'ms-jpq/chadtree',
+		branch = 'chad',
+		run = 'python3 -m chadtree deps'
+	}
+
+	use { 'neovim/nvim-lspconfig' }
+
 end)
+
+require('telescope').setup {
+	extensions = {
+		fzf = {
+			fuzzy = true,
+			override_generic_sorter = false,
+			override_file_sorter = true,
+			case_mode = 'smart_case'
+		}
+	}
+}
+
+require('telescope').load_extension('fzf')
+
+require('lspconfig').clangd.setup{}
 
 return packer

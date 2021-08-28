@@ -49,7 +49,3 @@ vim.api.nvim_set_option('smartcase', true)
 vim.api.nvim_set_var('fzfSwitchProjectWorkspaces', config_values.workspace_folders)
 vim.api.nvim_set_var('fzfSwitchProjectAlwaysChooseFile', false)
 
-
-
--- TEMPORARY
-vim.g.coc_global_extensions={ 'coc-omnisharp', 'coc-explorer' }

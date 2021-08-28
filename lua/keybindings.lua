@@ -30,12 +30,8 @@ vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<leader><space>', ':Telescope git_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ff', ':Telescope find_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>/', ':Telescope grep_string<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fs', ':Telescope grep_string<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>c', ':Telescope git_commits<CR>', { noremap = true, silent = true })
-
-
--- TrueZen
-vim.api.nvim_set_keymap('n', '<leader>z', ":TZAtaraxis<CR>", { noremap = true, silent = true })
 
 
 -- Which
@@ -52,8 +48,7 @@ vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true
 
 
 -- Explorer
--- vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>r', ':Vexplore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':CHADopen<CR>', { noremap = true, silent = true })
 
 -- Terminal
 vim.api.nvim_set_keymap('n', '<leader>t', ':split | terminal<CR>', { noremap = true, silent = true })
@@ -63,6 +58,3 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
-
--- COC
-vim.api.nvim_set_keymap('n', '<leader>e', ':CocCommand explorer<CR>', { noremap = true, silent = true })
