@@ -3,14 +3,20 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- colorscheme
-vim.api.nvim_command('colorscheme tokyonight')
-vim.g.tokyonight_style = 'night'
+local catppuccino = require('catppuccino')
+catppuccino.setup({
+	colorscheme = 'neon_latte',
+	integrations = {
+		telescope = true,
+		which_key = true
+	}
+})
+catppuccino.load()
 
 -- status line
 require('lualine').setup{
 	options = {
-		--theme = require('lualine.themes.ayu_mirage')
-		theme = 'tokyonight'
+		theme = 'catppuccino'
 	}
 }
 

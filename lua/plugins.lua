@@ -22,7 +22,7 @@ packer.startup(function()
 		branch = 'release'
 	}
 
-	use { 'folke/tokyonight.nvim' }
+	use { 'pocco81/catppuccino.nvim' }
 
 	use { 'editorconfig/editorconfig-vim' }
 
