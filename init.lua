@@ -36,16 +36,8 @@ vim.api.nvim_set_option('syntax', 'on')
 
 vim.api.nvim_set_option('timeoutlen', 400)
 
--- use LSP for omnifunc for typescript
-vim.api.nvim_command('autocmd Filetype typescript setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-
-
--- use english vim
--- vim.api.nvim_command('language en_US')
+-- use LSP for omnifunc for c++
+vim.api.nvim_command('autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 
 vim.api.nvim_set_option('ignorecase', true)
 vim.api.nvim_set_option('smartcase', true)
-
-vim.api.nvim_set_var('fzfSwitchProjectWorkspaces', config_values.workspace_folders)
-vim.api.nvim_set_var('fzfSwitchProjectAlwaysChooseFile', false)
-
