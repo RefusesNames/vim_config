@@ -1,19 +1,3 @@
--- TODO could be simplified with vimpeccable
-
-
--- LSP
-vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gD', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true })
-
-
--- more convenient omnifunc
-vim.api.nvim_set_keymap('i', '<C-A>', '<C-X><C-O>', { noremap = false, silent = true })
-
-
--- NAVIGATION
-
 -- window
 vim.api.nvim_set_keymap('n', '<C-H>', '<C-W>h', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<C-J>', '<C-W>j', { noremap = false, silent = true })
@@ -58,3 +42,82 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
+
+-- LSP
+-- See `:help vim.lsp.*` for documentation on any of the below functions
+local lsp_keybindings = 
+{
+	{
+		shortcut = 'gD',
+		command = '<cmd>lua vim.lsp.buf.declaration()<CR>'
+	},
+  {
+		shortcut = 'gd',
+		command = '<cmd>lua vim.lsp.buf.definition()<CR>'
+	},
+  {
+		shortcut = 'K',
+		command = '<cmd>lua vim.lsp.buf.hover()<CR>'
+	},
+  {
+		shortcut = 'gi',
+		command = '<cmd>lua vim.lsp.buf.implementation()<CR>'
+	},
+  {
+		shortcut = '<C-k>',
+		command = '<cmd>lua vim.lsp.buf.signature_help()<CR>'
+	},
+  {
+		shortcut = '<space>wa',
+		command = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>'
+	},
+  {
+		shortcut = '<space>wr',
+		command = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>'
+	},
+  {
+		shortcut = '<space>wl',
+		command = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>'
+	},
+  {
+		shortcut = '<space>D',
+		command = '<cmd>lua vim.lsp.buf.type_definition()<CR>'
+	},
+  {
+		shortcut = '<space>rn',
+		command = '<cmd>lua vim.lsp.buf.rename()<CR>'
+	},
+  {
+		shortcut = '<space>ca',
+		command = '<cmd>lua vim.lsp.buf.code_action()<CR>'
+	},
+  {
+		shortcut = 'gr',
+		command = '<cmd>lua vim.lsp.buf.references()<CR>'
+	},
+  {
+		shortcut = '<space>e',
+		command = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'
+	},
+  {
+		shortcut = '[d',
+		command = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>'
+	},
+  {
+		shortcut = ']d',
+		command = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>'
+	},
+  {
+		shortcut = '<space>q',
+		command = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'
+	},
+  {
+		shortcut = '<space>f',
+		command = '<cmd>lua vim.lsp.buf.formatting()<CR>'
+	},
+}
+
+return 
+{
+	lsp_keybindings = lsp_keybindings
+}
