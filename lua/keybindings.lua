@@ -64,7 +64,7 @@ local lsp_keybindings =
 		command = '<cmd>lua vim.lsp.buf.implementation()<CR>'
 	},
   {
-		shortcut = '<C-k>',
+		shortcut = '<C-i>',
 		command = '<cmd>lua vim.lsp.buf.signature_help()<CR>'
 	},
   {
@@ -96,7 +96,7 @@ local lsp_keybindings =
 		command = '<cmd>lua vim.lsp.buf.references()<CR>'
 	},
   {
-		shortcut = '<space>e',
+		shortcut = '<space>d',
 		command = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>'
 	},
   {
