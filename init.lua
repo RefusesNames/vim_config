@@ -39,5 +39,8 @@ vim.api.nvim_set_option('timeoutlen', 400)
 -- use LSP for omnifunc for c++
 vim.api.nvim_command('autocmd Filetype cpp setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 
+-- use LSP for omnifunc for typescript
+vim.api.nvim_command('autocmd Filetype ts setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+
 vim.api.nvim_set_option('ignorecase', true)
 vim.api.nvim_set_option('smartcase', true)
