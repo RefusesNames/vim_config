@@ -49,11 +49,11 @@ local lsp_keybindings =
 {
 	{
 		shortcut = 'gD',
-		command = '<cmd>lua vim.lsp.buf.declaration()<CR>'
+		command = '<cmd>vsplit | lua vim.lsp.buf.declaration()<CR>'
 	},
   {
 		shortcut = 'gd',
-		command = '<cmd>lua vim.lsp.buf.definition()<CR>'
+		command = '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>'
 	},
   {
 		shortcut = 'K',
@@ -61,7 +61,7 @@ local lsp_keybindings =
 	},
   {
 		shortcut = 'gi',
-		command = '<cmd>lua vim.lsp.buf.implementation()<CR>'
+		command = '<cmd>vsplit | lua vim.lsp.buf.implementation()<CR>'
 	},
   {
 		shortcut = '<C-i>',
