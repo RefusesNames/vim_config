@@ -43,6 +43,11 @@ vim.api.nvim_set_keymap('n', '_', '<C-W>_', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
 
+-- Debugging
+vim.api.nvim_set_keymap('n', 'db', ":lua require'dap'.toggle_breakpoint()", { noremap = true, silent = true }) -- toggle breakpoint
+vim.api.nvim_set_keymap('n', 'dr', ":lua require'dap'.repl.open()", { noremap = true, silent = true }) -- open repl
+vim.api.nvim_set_keymap('n', 'ds', ":lua require'dap'.continue()", { noremap = true, silent = true }) -- continue/start
+
 -- LSP
 -- See `:help vim.lsp.*` for documentation on any of the below functions
 local lsp_keybindings = 

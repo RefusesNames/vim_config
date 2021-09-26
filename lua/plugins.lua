@@ -42,6 +42,8 @@ packer.startup(function()
   use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
+	use 'mfussenegger/nvim-dap'
+
 end)
 
 require('telescope').setup {
@@ -136,6 +138,52 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
+}
+
+--- C#
+local dap = require('dap')
+dap.adapters.netcoredbg = {
+	type = 'executable',
+	command = '/usr/local/netcoredbg',
+	args = { '--interpreter=vscode' }
+}
+dap.configurations.cs = {
+	{
+		type = 'netcoredbg',
+		name = 'launch - netcoredbg',
+		request = 'launch',
+		program = function()
+			return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+		end,
+	},
+}
+
+--- C++
+dap.adapters.lldb = {
+	type = 'executable',
+	command = '/usr/bin/lldb-vscode-12',
+	name = 'lldb'
+}
+dap.configurations.cpp = {
+	{
+		name = 'Launch',
+		type = 'lldb',
+		request = 'launch',
+		program = function()
+			return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+		args = {},
+		runInTerminal = false,
+		env = function()
+			local variables = {}
+			for k, v in pairs(vim.fn.environ()) do
+				table.insert(variables, string.format("%s=%s", k, v))
+			end
+			return variables
+		end,
+	}
 }
 
 return packer
