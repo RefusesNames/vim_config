@@ -23,7 +23,11 @@ packer.startup(function()
 
 	use {
 		'nvim-telescope/telescope.nvim',
-		requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }}
+		requires = {
+			{'nvim-lua/popup.nvim'},
+			{'nvim-lua/plenary.nvim'},
+			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+		}
 	}
 
 	use {	'liuchengxu/vim-which-key' }
@@ -31,9 +35,9 @@ packer.startup(function()
 	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
 
 	use {
-		'ms-jpq/chadtree',
-		branch = 'chad',
-		run = 'python3 -m chadtree deps'
+		'kyazdani42/nvim-tree.lua',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = function() require'nvim-tree'.setup{} end
 	}
 
 	use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client

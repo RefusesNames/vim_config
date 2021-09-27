@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true
 
 
 -- Explorer
-vim.api.nvim_set_keymap('n', '<leader>e', ':CHADopen<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 
 -- Terminal
 vim.api.nvim_set_keymap('n', '<leader>t', ':split | terminal<CR>', { noremap = true, silent = true })
@@ -44,9 +44,9 @@ vim.api.nvim_set_keymap('n', '|', '<C-W>|', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '=', '<C-W>=', { noremap = true, silent = true })
 
 -- Debugging
-vim.api.nvim_set_keymap('n', '<leader>sb', ":lua require'dap'.toggle_breakpoint()", { noremap = true, silent = true }) -- toggle breakpoint
-vim.api.nvim_set_keymap('n', '<leader>sr', ":lua require'dap'.repl.open()", { noremap = true, silent = true }) -- open repl
-vim.api.nvim_set_keymap('n', '<leader>ss', ":lua require'dap'.continue()", { noremap = true, silent = true }) -- continue/start
+vim.api.nvim_set_keymap('n', '<leader>sb', ":lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true }) -- toggle breakpoint
+vim.api.nvim_set_keymap('n', '<leader>sr', ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true }) -- open repl
+vim.api.nvim_set_keymap('n', '<leader>ss', ":lua require'dap'.continue()<CR>", { noremap = true, silent = true }) -- continue/start
 
 -- LSP
 -- See `:help vim.lsp.*` for documentation on any of the below functions
