@@ -7,7 +7,7 @@ let mapleader = "\<Space>"
 if has("win64") || has("win32")
 	" see ':h shell-powershell' and
 	" https://github.com/junegunn/vim-plug/issues/895#issuecomment-544130552
-	let &shell = has('win64') ? 'pwsh.exe': 'powershell.exe'
+	let &shell = has('win64') ? 'pwsh.exe -NoLogo': 'powershell.exe'
 	set shellquote= shellpipe=\| shellxquote=
 	set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 	set shellredir=\|\ Out-File\ -Encoding\ UTF8
