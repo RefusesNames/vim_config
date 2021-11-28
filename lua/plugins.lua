@@ -28,6 +28,13 @@ return require('packer').startup(function(use)
 	    end
 	}
 
+	use {
+		'junegunn/fzf.vim',
+		requires = {
+			{ 'junegunn/fzf' }
+		}
+	}
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end

@@ -29,3 +29,6 @@ vim.api.nvim_set_keymap('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = fal
 
 -- Comment
 vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
+
+-- FZF
+vim.api.nvim_set_keymap('n', '<leader><space>', ':GFiles', { noremap = false, silent = true })
