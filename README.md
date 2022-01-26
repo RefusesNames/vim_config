@@ -8,7 +8,7 @@ $vsPath = &(Join-Path ${env:ProgramFiles(x86)} "\Microsoft Visual Studio\Install
 Import-Module (Join-Path $vsPath "Common7\Tools\Microsoft.VisualStudio.DevShell.dll")
 Enter-VsDevShell -VsInstallPath $vsPath -SkipAutomaticLocation -DevCmdArguments '-arch=amd64 -no_logo'
 ```
-- 
+- OmniSharp in PATH (get from [here](https://github.com/OmniSharp/omnisharp-roslyn/releases)) 
 
 # Install TreeSitter Modules
 - `:TSInstall c_sharp`
