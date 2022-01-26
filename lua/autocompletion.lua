@@ -1,6 +1,7 @@
 local nvim_lsp = require('lspconfig')
 
 local lsp_keybindings = require('keybindings').lsp_keybindings
+local local_config = require('local_config')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -32,7 +33,7 @@ for _, lsp in ipairs(servers) do
 end
 local pid = vim.fn.getpid()
 require('lspconfig').omnisharp.setup{
-	cmd = { 'D:\\bin\\omnisharp\\OmniSharp.exe', '--languageserver', '--hostPID', tostring(pid) }
+	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) }
 }
 
 -- luasnip setup

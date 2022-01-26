@@ -1,0 +1,3 @@
+return {
+	omnisharp_path = 'D:\\path\\to\\OmniSharp.exe'
+}
