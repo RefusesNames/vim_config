@@ -59,9 +59,17 @@ return require('packer').startup(function(use)
 				ensure_installed = 'maintained',
 				highlight = { enable = true },
 				incremental_selection = { enable = true },
-				textobjects = { enable = true },
+				-- textobjects = { enable = true },
+				rainbow = {
+					enable = true,
+					extended_mode = true
+				}
 			}
-		end
+		end,
+		requires = {
+			{ 'p00f/nvim-ts-rainbow' }
+		}
+
 	}
 
 	-- LSP and Completion
