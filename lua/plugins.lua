@@ -56,10 +56,10 @@ return require('packer').startup(function(use)
 		run = ':TSUpdate',
 		config = function()
 			require('nvim-treesitter.configs').setup{
-				ensure_installed = 'maintained',
+				ensure_installed = { 'cpp', 'lua', 'c_sharp' },
 				highlight = { enable = true },
 				incremental_selection = { enable = true },
-				-- textobjects = { enable = true },
+				textobjects = { enable = true },
 				rainbow = {
 					enable = true,
 					extended_mode = true
