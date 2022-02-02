@@ -20,7 +20,13 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' }
 	use { 'rmehri01/onenord.nvim' }
-	use { 'kyazdani42/nvim-tree.lua' }
+
+	use {
+		'ms-jpq/chadtree',
+		branch = 'chad',
+		run = 'python3 -m chadtree deps',
+	}
+
 	use {
 	    'numToStr/Comment.nvim',
 	    config = function()

@@ -20,8 +20,6 @@ require('plugins')
 
 require('onenord').setup()
 
-require('nvim-tree').setup()
-
 require('keybindings')
 
 require('appearance')

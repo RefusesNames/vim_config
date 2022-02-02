@@ -14,3 +14,8 @@ vim.o.splitbelow = true
 
 vim.wo.number = true
 vim.wo.relativenumber = true
+
+
+vim.api.nvim_set_var("chadtree_settings", {
+	['theme.text_colour_set'] = 'nord',
+})
