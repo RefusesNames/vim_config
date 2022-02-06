@@ -50,11 +50,6 @@ vim.api.nvim_set_keymap('n', '<leader>l', ':RainbowLevelsToggle<CR>', { noremap 
 vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true })
 
-
--- Explorer
--- vim.api.nvim_set_keymap('n', '<leader>e', ':Explore<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>r', ':Vexplore<CR>', { noremap = true, silent = true })
-
 -- Terminal
 vim.api.nvim_set_keymap('n', '<leader>t', ':split | terminal<CR>', { noremap = true, silent = true })
 

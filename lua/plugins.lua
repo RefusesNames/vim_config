@@ -40,6 +40,7 @@ packer.startup(function()
 
 	use { 'thiagoalessio/rainbow_levels.vim', as='rainbow_levels' }
 
+	use { 'vuciv/vim-bujo' }
 end)
 
 return packer

@@ -11,6 +11,9 @@ if has("win64") || has("win32")
 	set shellquote= shellpipe=\| shellxquote=
 	set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 	set shellredir=\|\ Out-File\ -Encoding\ UTF8
+
+	set directory=C:/Users/JReinlaender/swap_files//
+	set swapfile
 endif
 ]],
 true)
@@ -56,3 +59,4 @@ vim.api.nvim_set_var('fzfSwitchProjectAlwaysChooseFile', false)
 
 -- TEMPORARY
 vim.g.coc_global_extensions={ 'coc-omnisharp', 'coc-explorer', 'coc-clangd' }
+

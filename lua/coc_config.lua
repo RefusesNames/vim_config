@@ -42,6 +42,7 @@ vim.api.nvim_set_keymap('i', '<c-space>', 'coc#refresh()', { noremap = true, sil
 -- nmap <silent> ]g <Plug>(coc-diagnostic-next)
 vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
 vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>d', ':CocList diagnostics<CR>', { silent = true })
 
 --  GoTo code navigation.
 -- nmap <silent> gd <Plug>(coc-definition)
@@ -55,6 +56,7 @@ vim.api.nvim_set_keymap('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
 --  Use K to show documentation in preview window.
 -- nnoremap <silent> K :call <SID>show_documentation()<CR>
+vim.api.nvim_set_keymap('n', 'K', ':call CocActionAsync("doHover")<CR>', { silent = true })
 
 -- function! s:show_documentation()
 --   if (index(['vim','help'], &filetype) >= 0)
