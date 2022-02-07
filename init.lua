@@ -16,6 +16,11 @@ endif
 ]],
 true)
 
+local local_config = require('local_config')
+
+vim.o.swapfile = true
+vim.o.dir = local_config.tmp_path
+
 require('plugins')
 
 require('onenord').setup()

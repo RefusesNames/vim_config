@@ -1,3 +1,4 @@
 return {
-	omnisharp_path = 'D:\\path\\to\\OmniSharp.exe'
+	omnisharp_path = 'D:\\path\\to\\OmniSharp.exe',
+	tmp_path = 'C:\\Users\\[User]\\AppData\\Local\\Temp',
 }
