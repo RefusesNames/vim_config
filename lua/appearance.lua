@@ -1,12 +1,16 @@
 vim.api.nvim_command('language en_US')
 
 -- how many spaces wide a tab is displayed
-vim.bo.tabstop = 2
-vim.o.tabstop = 2
+vim.bo.tabstop = 4
+vim.o.tabstop = 4
 
 -- how many spaces (or equivalents) is one indent
-vim.bo.shiftwidth = 2
-vim.o.shiftwidth = 2
+vim.bo.shiftwidth = 4
+vim.o.shiftwidth = 4
+
+-- use spaces instead of tabs :(
+vim.bo.expandtab = true
+vim.o.expandtab = true
 
 -- open windows to the right or below
 vim.o.splitright = true
