@@ -41,5 +41,6 @@ return {
 	['<space>d'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
 	['[d'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
 	[']d'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-	['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'
+	['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
+	['<space>a'] = '<cmd>lua vim.lsp.buf.code_action()<CR>'
 }
