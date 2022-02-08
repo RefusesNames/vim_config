@@ -19,6 +19,9 @@ vim.api.nvim_set_keymap('n', '<leader>e', ':CHADopen<CR>', { noremap = false, si
 vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true })
 
+-- Miscellaneous
+vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = false, silent = true})
+
 -- FZF
 vim.api.nvim_set_keymap('n', '<leader><space>', ':GFiles<CR>', { noremap = false, silent = true })
 
@@ -35,7 +38,7 @@ return {
 	['<space>D'] = '<cmd>lua vim.lsp.buf.type_definition()<CR>',
 	['<space>rn'] = '<cmd>lua vim.lsp.buf.rename()<CR>',
 	['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
-	['<space>e'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+	['<space>d'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
 	['[d'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
 	[']d'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
 	['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'
