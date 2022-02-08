@@ -1,6 +1,6 @@
 local nvim_lsp = require('lspconfig')
 
-local lsp_keybindings = require('keybindings').lsp_keybindings
+local lsp_keybindings = require('keybindings')
 local local_config = require('local_config')
 
 -- Use an on_attach function to only map the following keys
@@ -13,27 +13,28 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap=false, silent=true }
 
-	for key_binding, command in ipairs(lsp_keybindings) do
-		vim.api.nvim_buf_set_keymap(bufnr, 'n', key_binding, command, opts)
-	end
+  for key_binding, command in pairs(lsp_keybindings) do
+      buf_set_keymap('n', key_binding, command, opts)
+  end
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
-end
+-- local servers = { 'omnisharp' }
+-- for _, lsp in ipairs(servers) do
+--   nvim_lsp[lsp].setup {
+--     on_attach = on_attach,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+--   }
+-- end
 local pid = vim.fn.getpid()
 require('lspconfig').omnisharp.setup{
-	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) }
+	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
+    on_attach = on_attach
 }
 
 -- luasnip setup
