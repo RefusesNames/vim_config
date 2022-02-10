@@ -21,66 +21,134 @@ return require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' }
 	use { 'rmehri01/onenord.nvim' }
 
-	use {
-		'ms-jpq/chadtree',
-		branch = 'chad',
-		run = 'python3 -m chadtree deps',
-	}
+    use {
+        'tamago324/lir.nvim',
+        requires = { 
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+        },
+        config = function ()
+            local actions = require'lir.actions'
+            local mark_actions = require 'lir.mark.actions'
+            local clipboard_actions = require'lir.clipboard.actions'
 
-	use {
-	    'numToStr/Comment.nvim',
-	    config = function()
-		    require('Comment').setup()
-	    end
-	}
+            require'lir'.setup {
+                show_hidden_files = false,
+                devicons_enable = true,
+                mappings = {
+                    ['<CR>']  = actions.edit,
+                    ['l']     = actions.edit,
+                    ['<C-s>'] = actions.split,
+                    ['<C-v>'] = actions.vsplit,
+                    ['<C-t>'] = actions.tabedit,
 
-	use {
-		'junegunn/fzf.vim',
-		requires = {
-			{ 'junegunn/fzf' }
-		}
-	}
+                    ['h']     = actions.up,
+                    ['q']     = actions.quit,
 
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		config = function()
-			require('lualine').setup{}
-		end
-	}
+                    ['A']     = actions.mkdir,
+                    ['a']     = actions.newfile,
+                    ['r']     = actions.rename,
+                    ['@']     = actions.cd,
+                    ['Y']     = actions.yank_path,
+                    ['.']     = actions.toggle_show_hidden,
+                    ['D']     = actions.delete,
 
-	use { 'tpope/vim-fugitive' }
+                    ['J'] = function()
+                        mark_actions.toggle_mark()
+                        vim.cmd('normal! j')
+                    end,
+                    ['yy'] = clipboard_actions.copy,
+                    ['dd'] = clipboard_actions.cut,
+                    ['p'] = clipboard_actions.paste,
+                },
+                float = {
+                    winblend = 0,
+                    curdir_window = {
+                        enable = false,
+                        highlight_dirname = false
+                    },
+                },
+                hide_cursor = true,
+                on_init = function()
+                    -- use visual mode
+                    vim.api.nvim_buf_set_keymap(
+                    0,
+                    "x",
+                    "J",
+                    ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
+                    { noremap = true, silent = true }
+                    )
 
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		config = function()
-			require('nvim-treesitter.configs').setup{
-				ensure_installed = { 'cpp', 'lua', 'c_sharp' },
-				highlight = { enable = true },
-				incremental_selection = { enable = true },
-				textobjects = { enable = true },
-				rainbow = {
-					enable = true,
-					extended_mode = true
-				}
-			}
-		end,
-		requires = {
-			{ 'p00f/nvim-ts-rainbow' }
-		}
+                    -- echo cwd
+                    vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
+                end,
+            }
 
-	}
+            -- custom folder icon
+            require'nvim-web-devicons'.set_icon({
+                lir_folder_icon = {
+                    icon = "",
+                    color = "#7ebae4",
+                    name = "LirFolderNode"
+                }
+            })
+        end
+    }
 
-	-- LSP and Completion
-	use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-	use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-	use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-	use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-	use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
+
+    use {
+        'junegunn/fzf.vim',
+        requires = {
+            { 'junegunn/fzf' }
+        }
+    }
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        config = function()
+            require('lualine').setup{}
+        end
+    }
+
+    use { 'tpope/vim-fugitive' }
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function()
+            require('nvim-treesitter.configs').setup{
+                ensure_installed = { 'cpp', 'lua', 'c_sharp' },
+                highlight = { enable = true },
+                incremental_selection = { enable = true },
+                textobjects = { enable = true },
+                rainbow = {
+                    enable = true,
+                    extended_mode = true
+                }
+            }
+        end,
+        requires = {
+            { 'p00f/nvim-ts-rainbow' }
+        }
+
+    }
+
+    -- LSP and Completion
+    use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+    use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+    use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
+    use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
+    use 'L3MON4D3/LuaSnip' -- Snippets plugin
 
 
-	if packer_bootstrap then
-		require('packer').sync()
-	end
+    if packer_bootstrap then
+        require('packer').sync()
+    end
 end)

@@ -13,7 +13,7 @@ vim.api.nvim_set_keymap('n', '$', 'g$', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 
 -- Explorer
-vim.api.nvim_set_keymap('n', '<leader>e', ':CHADopen<CR>', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':lua require\'lir.float\'.toggle()<CR>', { noremap = false, silent = true })
 
 -- Comment
 vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
