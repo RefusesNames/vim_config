@@ -44,6 +44,7 @@ return require('packer').startup(function(use)
 
                     ['h']     = actions.up,
                     ['q']     = actions.quit,
+                    ['<Esc>'] = actions.quit,
 
                     ['A']     = actions.mkdir,
                     ['a']     = actions.newfile,
