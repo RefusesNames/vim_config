@@ -21,6 +21,9 @@ local local_config = require('local_config')
 vim.o.swapfile = true
 vim.o.dir = local_config.tmp_path
 
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
 require('plugins')
 
 require('onenord').setup()
