@@ -104,10 +104,8 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'junegunn/fzf.vim',
-        requires = {
-            { 'junegunn/fzf' }
-        }
+        'nvim-telescope/telescope.nvim',
+        requires = { 'nvim-lua/plenary.nvim' }
     }
 
     use {

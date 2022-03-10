@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true
 vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = false, silent = true})
 
 -- FZF
-vim.api.nvim_set_keymap('n', '<leader><space>', ':GFiles<CR>', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><space>', ':Telescope find_files<CR>', { noremap = false, silent = true })
 
 -- LSP
 return {
