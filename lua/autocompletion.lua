@@ -39,6 +39,7 @@ require('lspconfig').omnisharp.setup{
 
 -- luasnip setup
 local luasnip = require 'luasnip'
+require('luasnip.loaders.from_snipmate').load()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
