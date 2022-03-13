@@ -37,6 +37,8 @@ require('lspconfig').omnisharp.setup{
     on_attach = on_attach
 }
 
+require('lspconfig').clangd.setup{}
+
 -- luasnip setup
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_snipmate').load()
