@@ -49,5 +49,5 @@ return {
 	['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
 	-- ['<space>a'] = '<cmd>lua vim.lsp.buf.code_action()<CR>'
 	['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
-	['gt'] = '<cmd>lua require("telescope.builtin").live_grep{}<CR>'
+	['gf'] = '<cmd>lua require("telescope.builtin").live_grep{}<CR>'
 }
