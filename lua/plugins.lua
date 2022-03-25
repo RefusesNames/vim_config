@@ -22,6 +22,22 @@ return require('packer').startup(function(use)
 	use { 'rmehri01/onenord.nvim' }
 
     use {
+        'pianocomposer321/yabs.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('yabs'):setup({
+                opts = {
+                output_types = {
+                    quickfix = {
+                        open_on_run = 'always',
+                    },
+                },
+            },
+        })
+    end
+    }
+
+    use {
         'tamago324/lir.nvim',
         requires = { 
             "nvim-lua/plenary.nvim",
@@ -105,7 +121,10 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim' }
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('telescope').load_extension('yabs')
+        end
     }
 
     use {
