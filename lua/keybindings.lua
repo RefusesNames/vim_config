@@ -35,7 +35,7 @@ return {
 	['K'] = '<Cmd>lua vim.lsp.buf.hover()<CR>',
 	-- ['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
 	['gi'] = '<cmd>lua require("telescope.builtin").lsp_implementations{}<CR>',
-	['<C-k>'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
+	['<space>k'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
 	['<space>wa'] = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
 	['<space>wr'] = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
 	['<space>wl'] = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
@@ -48,7 +48,7 @@ return {
 	['[d'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
 	[']d'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
 	['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
-	-- ['<space>a'] = '<cmd>lua vim.lsp.buf.code_action()<CR>'
-	['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
+	['<space>a'] = '<cmd>lua vim.lsp.buf.code_action()<CR>',
+	-- ['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
 	['gf'] = '<cmd>lua require("telescope.builtin").live_grep{}<CR>'
 }
