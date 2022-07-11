@@ -123,7 +123,13 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
         config = function()
-            require('telescope').load_extension('yabs')
+            local telescope = require('telescope')
+            telescope.setup {
+                defaults = {
+                    file_ignore_patterns = { ".git" }
+                }
+            }
+            telescope.load_extension('yabs')
         end
     }
 
@@ -156,6 +162,10 @@ return require('packer').startup(function(use)
             { 'p00f/nvim-ts-rainbow' }
         }
 
+    }
+
+    use {
+        'gpanders/editorconfig.nvim'
     }
 
     -- LSP and Completion
