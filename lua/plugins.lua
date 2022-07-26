@@ -126,7 +126,7 @@ return require('packer').startup(function(use)
             local telescope = require('telescope')
             telescope.setup {
                 defaults = {
-                    file_ignore_patterns = { ".git" }
+                    file_ignore_patterns = { ".git", ".svn" }
                 }
             }
             telescope.load_extension('yabs')
