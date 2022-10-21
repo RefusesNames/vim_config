@@ -4,13 +4,18 @@ vim.api.nvim_command('language en_US')
 vim.bo.tabstop = 4
 vim.o.tabstop = 4
 
+vim.bo.softtabstop = 4
+vim.o.softtabstop = 4
+
 -- how many spaces (or equivalents) is one indent
 vim.bo.shiftwidth = 4
 vim.o.shiftwidth = 4
 
 -- use spaces instead of tabs :(
-vim.bo.expandtab = true
-vim.o.expandtab = true
+-- vim.bo.expandtab = true
+-- vim.o.expandtab = true
+
+vim.o.smarttab = true
 
 -- open windows to the right or below
 vim.o.splitright = true
