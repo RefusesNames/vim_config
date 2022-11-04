@@ -21,6 +21,7 @@ vim.wo.relativenumber = true
 
 vim.o.cursorline = true
 
+vim.opt.colorcolumn = '90'
 
 vim.api.nvim_set_var("chadtree_settings", {
 	['theme.text_colour_set'] = 'nord',
