@@ -16,7 +16,7 @@ local on_attach = function(client, bufnr)
   local opts = { noremap=false, silent=true }
 
   for key_binding, command in pairs(lsp_keybindings) do
-      buf_set_keymap('n', key_binding, command, opts)
+      vim.keymap.set('n', key_binding, command, opts)
   end
 end
 
@@ -93,7 +93,12 @@ require('lspconfig').omnisharp.setup{
 	end
 }
 
-require('lspconfig').clangd.setup{}
+require('lspconfig').clangd.setup{
+	on_attach = on_attach
+}
+require('lspconfig').rust_analyzer.setup{
+	on_attach = on_attach
+}
 
 -- luasnip setup
 local luasnip = require 'luasnip'
