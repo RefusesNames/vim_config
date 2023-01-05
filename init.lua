@@ -13,6 +13,9 @@ if has("win64") || has("win32")
 	set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
 	set shellredir=\|\ Out-File\ -Encoding\ UTF8
 endif
+if exists("g:neovide")
+	set guifont=FiraCode\ Nerd\ Font:h11
+endif
 ]],
 true)
 
