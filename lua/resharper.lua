@@ -35,7 +35,7 @@ function get_project_file()
 			return project_file
 		end
 
-		current_folder = string.sub(current_folder, 1, string.find(current_folder, '\\[^\\]*$'))
+		current_folder = string.sub(current_folder, 1, string.find(current_folder, '\\[^\\]*$') - 1)
 
 		print('Not found, looking for project file in folder: ' .. current_folder)
 	until current_folder == vim.lsp.buf.list_workspace_folders()[1]
