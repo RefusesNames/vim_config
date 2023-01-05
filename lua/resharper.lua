@@ -12,13 +12,13 @@ function get_project_file_in_folder(folder_path)
 	if names_found == 0 then
 		return nil
 	elseif names_found == 1 then
-		return project_file_names[1]
+		return folder_path .. '\\' .. project_file_names[1]
 	else
 		local result = nil
 		vim.ui.select(project_file_names, {
 			prompt = 'Select the solution:',
 		}, function(selected_project_file)
-			result = selected_project_file
+			result = folder_path .. '\\' .. selected_project_file
 		end)
 		return result
 	end
