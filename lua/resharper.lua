@@ -3,7 +3,7 @@ function get_project_file_in_folder(folder_path)
 
 	local project_file_names = {}
 	for directory_item in vim.fs.dir(folder_path) do
-		if string.match(directory_item, '%S+.csproj') then
+		if string.match(directory_item, '%S+.csproj$') then
 			project_file_names[#project_file_names + 1] = directory_item
 		end
 	end
