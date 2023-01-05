@@ -37,13 +37,11 @@ require('lspconfig').omnisharp.setup{
 	on_attach = on_attach,
 	on_new_config = function(new_config, new_root_dir)
 		table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
-		-- vim.ui.input({ prompt='Select solution: ' }, function(solution)
-		-- 	print('You chose ' .. solution)
-		-- end)
+
 		local names = {}
 
 		for directory_item in vim.fs.dir(new_root_dir) do
-			if string.match(directory_item, '%S+.sln') then
+			if string.match(directory_item, '%S+.sln$') then
 				names[#names + 1] = directory_item
 			end
 		end
@@ -56,39 +54,6 @@ require('lspconfig').omnisharp.setup{
 			end)
 		else
 			vim.list_extend(new_config.cmd, { '-s', new_root_dir })
-		end
-
-		vim.list_extend(new_config.cmd, { '--hostPID', tostring(vim.fn.getpid()) })
-		table.insert(new_config.cmd, 'DotNet:enablePackageRestore=false')
-		vim.list_extend(new_config.cmd, { '--encoding', 'utf-8' })
-		table.insert(new_config.cmd, '--languageserver')
-
-		if new_config.enable_editorconfig_support then
-			table.insert(new_config.cmd, 'FormattingOptions:EnableEditorConfigSupport=true')
-		end
-
-		if new_config.organize_imports_on_format then
-			table.insert(new_config.cmd, 'FormattingOptions:OrganizeImports=true')
-		end
-
-		if new_config.enable_ms_build_load_projects_on_demand then
-			table.insert(new_config.cmd, 'MsBuild:LoadProjectsOnDemand=true')
-		end
-
-		if new_config.enable_roslyn_analyzers then
-			table.insert(new_config.cmd, 'RoslynExtensionsOptions:EnableAnalyzersSupport=true')
-		end
-
-		if new_config.enable_import_completion then
-			table.insert(new_config.cmd, 'RoslynExtensionsOptions:EnableImportCompletion=true')
-		end
-
-		if new_config.sdk_include_prereleases then
-			table.insert(new_config.cmd, 'Sdk:IncludePrereleases=true')
-		end
-
-		if new_config.analyze_open_documents_only then
-			table.insert(new_config.cmd, 'RoslynExtensionsOptions:AnalyzeOpenDocumentsOnly=true')
 		end
 	end
 }
