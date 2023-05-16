@@ -1,5 +1,3 @@
-vim.api.nvim_command('language en_US')
-
 -- how many spaces wide a tab is displayed
 vim.bo.tabstop = 2
 vim.o.tabstop = 2
