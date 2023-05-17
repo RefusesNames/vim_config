@@ -24,18 +24,18 @@ return require('packer').startup(function(use)
     use {
         'pianocomposer321/yabs.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('yabs'):setup({
-                opts = {
-                output_types = {
-                    quickfix = {
-                        open_on_run = 'always',
-                    },
-                },
-            },
-        })
-    end
-    }
+				config = function()
+					require('yabs'):setup({
+						opts = {
+							output_types = {
+								quickfix = {
+									open_on_run = 'always',
+								},
+							},
+						},
+					})
+				end
+			}
 
     use {
         'tamago324/lir.nvim',
@@ -49,12 +49,12 @@ return require('packer').startup(function(use)
             local clipboard_actions = require'lir.clipboard.actions'
 
             require'lir'.setup {
-                show_hidden_files = false,
-		devicons = {
-			enable = true,
-			highlight_dirname = true
-		},
-                mappings = {
+							show_hidden_files = false,
+							devicons = {
+								enable = true,
+								highlight_dirname = true
+							},
+							mappings = {
                     ['<CR>']  = actions.edit,
                     ['l']     = actions.edit,
                     ['<C-s>'] = actions.split,
