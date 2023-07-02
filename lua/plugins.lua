@@ -50,7 +50,10 @@ return require('packer').startup(function(use)
 
             require'lir'.setup {
                 show_hidden_files = false,
-                devicons_enable = true,
+                devicons = {
+									enable = true,
+									highlight_dirname = true
+								},
                 mappings = {
                     ['<CR>']  = actions.edit,
                     ['l']     = actions.edit,
