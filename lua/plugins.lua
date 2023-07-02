@@ -24,18 +24,18 @@ return require('packer').startup(function(use)
     use {
         'pianocomposer321/yabs.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('yabs'):setup({
-                opts = {
-                output_types = {
-                    quickfix = {
-                        open_on_run = 'always',
-                    },
-                },
-            },
-        })
-    end
-    }
+				config = function()
+					require('yabs'):setup({
+						opts = {
+							output_types = {
+								quickfix = {
+									open_on_run = 'always',
+								},
+							},
+						},
+					})
+				end
+			}
 
     use {
         'tamago324/lir.nvim',
