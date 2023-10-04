@@ -27,7 +27,7 @@ vim.o.dir = local_config.tmp_path
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
-require('plugins')
+require('plugin_manager')
 
 require('onenord').setup()
 
@@ -35,12 +35,12 @@ require('keybindings')
 
 require('appearance')
 
-require('autocompletion')
+-- require('autocompletion')
 
-require('resharper')
+-- require('resharper')
 
-vim.api.nvim_command('autocmd Filetype ts setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd Filetype cs setlocal omnifunc=v:lua.vim.lsp.omnifunc')
-vim.api.nvim_command('autocmd TermOpen * setlocal nonumber norelativenumber')
+-- vim.api.nvim_command('autocmd Filetype ts setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+-- vim.api.nvim_command('autocmd Filetype cs setlocal omnifunc=v:lua.vim.lsp.omnifunc')
+-- vim.api.nvim_command('autocmd TermOpen * setlocal nonumber norelativenumber')
 
-vim.api.nvim_create_user_command('Notes', 'e ~/notes.md', { force = true })
+-- vim.api.nvim_create_user_command('Notes', 'e ~/notes.md', { force = true })
