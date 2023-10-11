@@ -42,6 +42,9 @@ function get_project_file()
 end
 
 function execute_resharper()
+	-- TODO: use `vim.loop.spawn` to do this asynchronously
+	-- (see https://github.com/lewis6991/async.nvim#example and `:h vim.loop`)
+	-- (maybe use vim.loop.new_thread?)
 	local tmp_file_name = os.tmpname()
 	local current_file = vim.fn.expand('%:t')
 
@@ -61,6 +64,7 @@ function execute_resharper()
 
 	vim.o.errorformat = errorformat_save
 	os.remove(tmp_file_name)
+	vim.cmd('copen')
 end
 
 vim.api.nvim_create_user_command('ReSharper', execute_resharper, { force = true })
