@@ -43,4 +43,4 @@ require('resharper')
 -- vim.api.nvim_command('autocmd Filetype cs setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 -- vim.api.nvim_command('autocmd TermOpen * setlocal nonumber norelativenumber')
 
--- vim.api.nvim_create_user_command('Notes', 'e ~/notes.md', { force = true })
+vim.api.nvim_create_user_command('Notes', 'e ~/notes.md', { force = true })
