@@ -1,6 +1,6 @@
 return {
 	'rmehri01/onenord.nvim',
-	'tpope/vim-fugitive',
+	-- 'tpope/vim-fugitive',
 	'gpanders/editorconfig.nvim',
 	{
 		'numToStr/Comment.nvim',
@@ -57,7 +57,17 @@ return {
 			"sindrets/diffview.nvim",        -- optional
 			"ibhagwan/fzf-lua",              -- optional
 		},
-		config = true
+		config = function()
+			require('neogit').setup{
+				kind = 'split'
+			}
+		end
+	},
+	{
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require('gitsigns').setup()
+		end
 	},
 
 	-- LSP and Completion
