@@ -31,32 +31,35 @@ end
 --     }
 --   }
 -- end
-local pid = vim.fn.getpid()
-require('lspconfig').omnisharp.setup{
-	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
-	on_attach = on_attach,
-	on_new_config = function(new_config, new_root_dir)
-		table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
 
-		local names = {}
+require('lspconfig').csharp_ls.setup{}
 
-		for directory_item in vim.fs.dir(new_root_dir) do
-			if string.match(directory_item, '%S+.sln$') then
-				names[#names + 1] = directory_item
-			end
-		end
-
-		if table.getn(names) ~= 1 then
-			vim.ui.select(names, {
-				prompt = 'Select the solution:',
-			}, function(selected_solution)
-				vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
-			end)
-		else
-			vim.list_extend(new_config.cmd, { '-s', new_root_dir })
-		end
-	end
-}
+-- local pid = vim.fn.getpid()
+-- require('lspconfig').omnisharp.setup{
+-- 	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
+-- 	on_attach = on_attach,
+-- 	on_new_config = function(new_config, new_root_dir)
+-- 		table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
+--
+-- 		local names = {}
+--
+-- 		for directory_item in vim.fs.dir(new_root_dir) do
+-- 			if string.match(directory_item, '%S+.sln$') then
+-- 				names[#names + 1] = directory_item
+-- 			end
+-- 		end
+--
+-- 		if table.getn(names) ~= 1 then
+-- 			vim.ui.select(names, {
+-- 				prompt = 'Select the solution:',
+-- 			}, function(selected_solution)
+-- 				vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
+-- 			end)
+-- 		else
+-- 			vim.list_extend(new_config.cmd, { '-s', new_root_dir })
+-- 		end
+-- 	end
+-- }
 
 require('lspconfig').clangd.setup{
 	on_attach = on_attach
