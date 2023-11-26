@@ -28,6 +28,7 @@ return {
 			require('lualine').setup{}
 		end
 	},
+
 	{
 		'nvim-treesitter/nvim-treesitter',
 		-- run = ':TSUpdate',
