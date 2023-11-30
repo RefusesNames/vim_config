@@ -27,6 +27,19 @@ vim.o.dir = local_config.tmp_path
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+vim.filetype.add({
+	extension = {
+		xaml = "xaml"
+	}
+})
+vim.api.nvim_create_autocmd(
+	{"BufEnter", "BufWinEnter"},
+	{
+		pattern = { "*.xaml" },
+		command = "set syntax=xml"
+	}
+)
+
 require('plugin_manager')
 
 require('onenord').setup()
