@@ -57,3 +57,6 @@ require('resharper')
 -- vim.api.nvim_command('autocmd TermOpen * setlocal nonumber norelativenumber')
 
 vim.api.nvim_create_user_command('Notes', 'e ~/notes.md', { force = true })
+vim.api.nvim_create_user_command('Vgit', function() require('neogit').open({ kind = 'vsplit' }) end, { force = true })
+vim.api.nvim_create_user_command('Sgit', function() require('neogit').open({ kind = 'split' }) end, { force = true })
+vim.api.nvim_create_user_command('Tgit', function ()require('neogit').open({ kind = 'tab' }) end, { force = true })
