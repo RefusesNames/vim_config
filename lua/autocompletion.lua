@@ -38,7 +38,19 @@ require('lspconfig').omnisharp.setup{
 	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
 	on_attach = on_attach,
 	on_new_config = function(new_config, new_root_dir)
+
+		-- removes everything but the omnisharp path
+		new_config.cmd = { unpack(new_config.cmd or {}) }
+
+		-- Append hard-coded command arguments
 		table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
+		-- vim.list_extend(new_config.cmd, { '--hostPID', tostring(vim.fn.getpid()) })
+		table.insert(new_config.cmd, 'DotNet:enablePackageRestore=false')
+		vim.list_extend(new_config.cmd, { '--encoding', 'utf-8' })
+		-- table.insert(new_config.cmd, '--languageserver')
+
+		-- TODO: see if the solution file was previously contained in new_config.cmd
+		-- if so, use it instead of asking the user to select a solution file
 
 		local names = {}
 
