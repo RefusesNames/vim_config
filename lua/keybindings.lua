@@ -26,7 +26,7 @@ vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = false, 
 vim.api.nvim_set_keymap('n', '<leader><space>', ':Telescope find_files<CR>', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>o', ':lua require("telescope.builtin").treesitter{}<CR>', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', ':Telescope yabs tasks<CR>', { noremap = false, silent = true })
-vim.api.nvim_set_keymap('n', 'gf', ':lua require("telescope.builtin").live_grep{}<CR>', { noremap = false, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>f', ':lua require("telescope.builtin").live_grep{}<CR>', { noremap = false, silent = true })
 
 -- LSP
 return {
