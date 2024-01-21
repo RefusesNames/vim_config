@@ -33,6 +33,7 @@ end
 --     }
 --   }
 -- end
+local solution_cache = {}
 local pid = vim.fn.getpid()
 require('lspconfig').omnisharp.setup{
 	cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
@@ -44,13 +45,14 @@ require('lspconfig').omnisharp.setup{
 
 		-- Append hard-coded command arguments
 		table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
-		-- vim.list_extend(new_config.cmd, { '--hostPID', tostring(vim.fn.getpid()) })
 		table.insert(new_config.cmd, 'DotNet:enablePackageRestore=false')
 		vim.list_extend(new_config.cmd, { '--encoding', 'utf-8' })
-		-- table.insert(new_config.cmd, '--languageserver')
 
-		-- TODO: see if the solution file was previously contained in new_config.cmd
-		-- if so, use it instead of asking the user to select a solution file
+		-- use cached solution file if we opened a file with the same root directory before
+		if solution_cache[new_root_dir] ~= nil then
+			vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
+			return
+		end
 
 		local names = {}
 
@@ -64,6 +66,7 @@ require('lspconfig').omnisharp.setup{
 			vim.ui.select(names, {
 				prompt = 'Select the solution:',
 			}, function(selected_solution)
+				solution_cache[new_root_dir] = new_root_dir .. '/' .. selected_solution
 				vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
 			end)
 		else
