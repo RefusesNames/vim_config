@@ -15,7 +15,7 @@ return {
 			local telescope = require('telescope')
 			telescope.setup {
 				defaults = {
-					file_ignore_patterns = { ".git", ".svn" }
+					file_ignore_patterns = { ".git", ".svn", "bin", "obj" }
 				}
 			}
 			-- telescope.load_extension('yabs')
