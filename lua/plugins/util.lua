@@ -1,6 +1,4 @@
 return {
-	'rmehri01/onenord.nvim',
-	-- 'tpope/vim-fugitive',
 	'gpanders/editorconfig.nvim',
 	{
 		'numToStr/Comment.nvim',
@@ -21,14 +19,6 @@ return {
 			-- telescope.load_extension('yabs')
 		end
 	},
-	{
-		'nvim-lualine/lualine.nvim',
-		dependencies = { 'kyazdani42/nvim-web-devicons' },
-		config = function()
-			require('lualine').setup{}
-		end
-	},
-
 	{
 		'nvim-treesitter/nvim-treesitter',
 		-- run = ':TSUpdate',
