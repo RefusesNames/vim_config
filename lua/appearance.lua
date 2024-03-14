@@ -24,3 +24,9 @@ vim.opt.colorcolumn = '90'
 vim.api.nvim_set_var("chadtree_settings", {
 	['theme.text_colour_set'] = 'nord',
 })
+
+vim.api.nvim_exec(
+[[
+hi Normal guibg=NONE ctermbg=NONE
+]],
+true)
