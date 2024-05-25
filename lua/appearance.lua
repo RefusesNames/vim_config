@@ -3,8 +3,8 @@ vim.bo.tabstop = 2
 vim.o.tabstop = 2
 
 -- how many spaces (or equivalents) is one indent
-vim.bo.shiftwidth = 2
-vim.o.shiftwidth = 2
+vim.bo.shiftwidth = 1
+vim.o.shiftwidth = 1
 
 -- use spaces instead of tabs :(
 vim.bo.expandtab = false
