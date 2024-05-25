@@ -25,10 +25,3 @@ vim.api.nvim_set_var("chadtree_settings", {
 	['theme.text_colour_set'] = 'nord',
 })
 
-require('onenord').setup({
-	fade_nc = true,
-	disable = {
-		background = true,
-		float_background = true,
-	}
-})

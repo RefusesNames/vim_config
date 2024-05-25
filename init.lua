@@ -42,8 +42,6 @@ vim.api.nvim_create_autocmd(
 
 require('plugin_manager')
 
-require('onenord').setup()
-
 require('keybindings')
 
 require('appearance')
