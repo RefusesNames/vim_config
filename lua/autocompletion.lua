@@ -70,7 +70,8 @@ require('lspconfig').omnisharp.setup{
 				vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
 			end)
 		else
-			vim.list_extend(new_config.cmd, { '-s', new_root_dir })
+			solution_cache[new_root_dir] = new_root_dir .. '/' .. names[1]
+			vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. names[1] })
 		end
 	end
 }
@@ -79,6 +80,10 @@ require('lspconfig').clangd.setup{
 	on_attach = on_attach
 }
 require('lspconfig').rust_analyzer.setup{
+	on_attach = on_attach
+}
+
+require('lspconfig').tsserver.setup{
 	on_attach = on_attach
 }
 
