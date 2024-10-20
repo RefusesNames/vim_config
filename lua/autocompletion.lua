@@ -83,10 +83,6 @@ require('lspconfig').rust_analyzer.setup{
 	on_attach = on_attach
 }
 
-require('lspconfig').tsserver.setup{
-	on_attach = on_attach
-}
-
 -- luasnip setup
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_snipmate').load()
