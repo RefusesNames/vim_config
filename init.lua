@@ -1,23 +1,20 @@
 -- quality of life
 vim.api.nvim_command('command! ReloadConfig :luafile $MYVIMRC')
 
--- temporary
-vim.api.nvim_exec(
-[[
-let mapleader = "\<Space>"
-if has("win64") || has("win32")
-	" see ':h shell-powershell' and
-	" https://github.com/junegunn/vim-plug/issues/895#issuecomment-544130552
-	let &shell = has('win64') ? 'pwsh.exe': 'powershell.exe'
-	set shellquote= shellpipe=\| shellxquote=
-	set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
-	set shellredir=\|\ Out-File\ -Encoding\ UTF8
-endif
-if exists("g:neovide")
-	set guifont=FiraCode\ Nerd\ Font:h11
-endif
-]],
-true)
+vim.g.mapleader = ' '
+local is_windows = vim.loop.os_uname().version:match("Windows")
+local shell = vim.o.shell
+local is_powershell = shell:match("pwsh") or shell:match("powershell")
+if is_windows then
+	if is_powershell then
+		-- Set PowerShell-specific settings
+		vim.opt.shell = 'pwsh'
+		vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
+		vim.opt.shellquote = ''
+		vim.opt.shellxquote = ''
+		vim.opt.shellpipe = '| Out-File -Encoding UTF8'
+	end
+end
 
 local local_config = require('local_config')
 
