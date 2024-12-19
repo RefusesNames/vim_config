@@ -7,19 +7,6 @@ return {
 		end
 	},
 	{
-		'nvim-telescope/telescope.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		config = function()
-			local telescope = require('telescope')
-			telescope.setup {
-				defaults = {
-					file_ignore_patterns = { ".git", ".svn", "bin", "obj", "target" }
-				}
-			}
-			-- telescope.load_extension('yabs')
-		end
-	},
-	{
 		'nvim-treesitter/nvim-treesitter',
 		-- run = ':TSUpdate',
 		config = function()
