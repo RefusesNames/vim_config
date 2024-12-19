@@ -1,11 +1,6 @@
 return {
 	'gpanders/editorconfig.nvim',
-	{
-		'numToStr/Comment.nvim',
-		config = function()
-			require('Comment').setup()
-		end
-	},
+	'numToStr/Comment.nvim',
 
 	-- LSP and Completion
 	'neovim/nvim-lspconfig', -- Collection of configurations for built-in LSP client
