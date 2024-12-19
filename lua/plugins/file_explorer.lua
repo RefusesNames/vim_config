@@ -73,5 +73,7 @@ return {
 				name = "LirFolderNode"
 			}
 		})
+
+		vim.keymap.set('n', '<leader>e', require('lir.float').toggle)
 	end
 }

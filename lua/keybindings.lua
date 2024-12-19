@@ -10,13 +10,6 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '$', 'g$', { noremap = false, silent = true })
 vim.api.nvim_set_keymap('n', '0', 'g0', { noremap = false, silent = true })
 
--- Explorer
-vim.api.nvim_set_keymap('n', '<leader>e', ':lua require\'lir.float\'.toggle()<CR>', { noremap = false, silent = true })
-
--- Comment
-vim.api.nvim_set_keymap('n', '<leader>/', 'gcc', { noremap = false, silent = true })
-vim.api.nvim_set_keymap('v', '<leader>/', 'gc', { noremap = false, silent = true })
-
 -- Miscellaneous
 vim.api.nvim_set_keymap('n', '<leader>n', ':nohlsearch<CR>', { noremap = false, silent = true})
 
