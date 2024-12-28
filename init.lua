@@ -3,17 +3,13 @@ vim.api.nvim_command('command! ReloadConfig :luafile $MYVIMRC')
 
 vim.g.mapleader = ' '
 local is_windows = vim.loop.os_uname().version:match("Windows")
-local shell = vim.o.shell
-local is_powershell = shell:match("pwsh") or shell:match("powershell")
 if is_windows then
-	if is_powershell then
-		-- Set PowerShell-specific settings
-		vim.opt.shell = 'pwsh'
-		vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
-		vim.opt.shellquote = ''
-		vim.opt.shellxquote = ''
-		vim.opt.shellpipe = '| Out-File -Encoding UTF8'
-	end
+	-- Set PowerShell-specific settings
+	vim.opt.shell = 'pwsh'
+	vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
+	vim.opt.shellquote = ''
+	vim.opt.shellxquote = ''
+	vim.opt.shellpipe = '| Out-File -Encoding UTF8'
 end
 
 local local_config = require('local_config')
@@ -42,8 +38,6 @@ require('plugin_manager')
 require('keybindings')
 
 require('appearance')
-
-require('autocompletion')
 
 require('resharper')
 
