@@ -1,5 +1,4 @@
 return {
-	'gpanders/editorconfig.nvim',
 	{
 		'numToStr/Comment.nvim',
 		config = function()
