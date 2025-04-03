@@ -1,11 +1,45 @@
 return
 {
 	{
+		'seblyng/roslyn.nvim',
+		ft = 'cs',
+		opts = {
+			config = {
+				exe = {
+					"dotnet",
+					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+				},
+				settings = {
+					["csharp|inlay_hints"] = {
+						csharp_enable_inlay_hints_for_implicit_object_creation = true,
+						csharp_enable_inlay_hints_for_implicit_variable_types = true,
+						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+						csharp_enable_inlay_hints_for_types = true,
+						dotnet_enable_inlay_hints_for_indexer_parameters = true,
+						dotnet_enable_inlay_hints_for_literal_parameters = true,
+						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+						dotnet_enable_inlay_hints_for_other_parameters = true,
+						dotnet_enable_inlay_hints_for_parameters = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+					},
+					["csharp|code_lens"] = {
+						dotnet_enable_references_code_lens = true,
+					},
+				},
+			},
+		}
+	},
+	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		config = function()
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 			--['gd'] = '<cmd>lua require("telescope.builtin").lsp_definitions{}<CR>',
+			vim.keymap.set('n', 'gi', function()
+				require("telescope.builtin").lsp_implementations{}
+			end)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 			vim.keymap.set('n','<leader>wa', vim.lsp.buf.add_workspace_folder)
 			vim.keymap.set('n','<leader>wr', vim.lsp.buf.remove_workspace_folder)
@@ -20,7 +54,7 @@ return
 			-- vim.keymap.set('n','<leader>q', vim.lsp.diagnostic.set_loclist)
 			vim.keymap.set('n','<leader>a', vim.lsp.buf.code_action)
 
-			--['gi'] = '<cmd>lua require("telescope.builtin").lsp_implementations{}<CR>',
+			vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help)
 			-- ['<space>k'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
 			--['gr'] = '<cmd>lua require("telescope.builtin").lsp_references{}<CR>',
 			-- ['<space>d'] = '<cmd>lua require("telescope.builtin").diagnostics{}<CR>',
@@ -32,114 +66,10 @@ return
 
 			local local_config = require('local_config')
 
-
-			-- TODO: figure out if this way of setting keybindings is still needed
-			-- local lsp_keybindings = require('keybindings')
-			-- local on_attach = function(client, bufnr)
-			--   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-			--   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-			--
-			--   -- Enable completion triggered by <c-x><c-o>
-			--   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-			--
-			--   -- Mappings.
-			--   local opts = { noremap=false, silent=true }
-			--
-			--   for key_binding, command in pairs(lsp_keybindings) do
-			--       vim.keymap.set('n', key_binding, command, opts)
-			--   end
-			-- end
-
-
-
 			vim.diagnostic.config({ virtual_text = false })
 
-			-- Use an on_attach function to only map the following keys
-			-- after the language server attaches to the current buffer
-			-- local on_attach = function(client, bufnr)
-			--   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-			--   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-			--
-			--   -- Enable completion triggered by <c-x><c-o>
-			--   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-			--
-			--   -- Mappings.
-			--   local opts = { noremap=false, silent=true }
-			--
-			--   -- for key_binding, command in pairs(lsp_keybindings) do
-			--   --     vim.keymap.set('n', key_binding, command, opts)
-			--   -- end
-			-- end
-
-			-- Use a loop to conveniently call 'setup' on multiple servers and
-			-- map buffer local keybindings when the language server attaches
-			-- local servers = { 'omnisharp' }
-			-- for _, lsp in ipairs(servers) do
-			--   nvim_lsp[lsp].setup {
-			--     on_attach = on_attach,
-			--     flags = {
-			--       debounce_text_changes = 150,
-			--     }
-			--   }
-			-- end
 			local solution_cache = {}
 			local pid = vim.fn.getpid()
-			require('lspconfig').omnisharp.setup{
-				cmd = { local_config.omnisharp_path, '--languageserver', '--hostPID', tostring(pid) },
-				-- TODO: if we don't have the `on_attach` above, can we just remove this line?
-				-- on_attach = on_attach,
-				on_new_config = function(new_config, new_root_dir)
-
-					-- removes everything but the omnisharp path
-					new_config.cmd = { unpack(new_config.cmd or {}) }
-
-					-- Append hard-coded command arguments
-					table.insert(new_config.cmd, '-z') -- https://github.com/OmniSharp/omnisharp-vscode/pull/4300
-					table.insert(new_config.cmd, 'DotNet:enablePackageRestore=false')
-					vim.list_extend(new_config.cmd, { '--encoding', 'utf-8' })
-
-					-- use cached solution file if we opened a file with the same root directory before
-					if solution_cache[new_root_dir] ~= nil then
-						vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
-						return
-					end
-
-					local names = {}
-
-					for directory_item in vim.fs.dir(new_root_dir) do
-						if string.match(directory_item, '%S+.sln$') then
-							names[#names + 1] = directory_item
-						end
-					end
-
-					local solutions_found = table.getn(names)
-
-					if solutions_found == 0 then
-						local project_file = ''
-						for directory_item in vim.fs.dir(new_root_dir) do
-							if string.match(directory_item, '%S+.csproj$') then
-								project_file = directory_item
-								break
-							end
-						end
-						if project_file == '' then return end
-
-						solution_cache[new_root_dir] = new_root_dir .. '/' .. project_file
-						vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. project_file })
-						return
-					elseif solutions_found == 1 then
-						solution_cache[new_root_dir] = new_root_dir .. '/' .. names[1]
-						vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. names[1] })
-					else
-						vim.ui.select(names, {
-							prompt = 'Select the solution:',
-						}, function(selected_solution)
-							solution_cache[new_root_dir] = new_root_dir .. '/' .. selected_solution
-							vim.list_extend(new_config.cmd, { '-s', new_root_dir .. '/' .. selected_solution })
-						end)
-					end
-				end
-			}
 
 			require('lspconfig').clangd.setup{
 				-- TODO: if we don't have the `on_attach` above, can we just remove this line?
