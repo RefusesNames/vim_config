@@ -54,6 +54,7 @@ return
 			-- vim.keymap.set('n','<leader>q', vim.lsp.diagnostic.set_loclist)
 			vim.keymap.set('n','<leader>a', vim.lsp.buf.code_action)
 
+			-- this might have been replaced by `vim.lsp.buf.hover()` (see https://neovim.io/doc/user/news-0.11.html):
 			vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help)
 			-- ['<space>k'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
 			--['gr'] = '<cmd>lua require("telescope.builtin").lsp_references{}<CR>',
