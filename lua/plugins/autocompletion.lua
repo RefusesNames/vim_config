@@ -5,9 +5,12 @@ return
 		ft = 'cs',
 		opts = {
 			config = {
-				exe = {
+				cmd = {
 					"dotnet",
 					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
+					"--logLevel=Information",
+					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+					"--stdio"
 				},
 				settings = {
 					["csharp|inlay_hints"] = {
