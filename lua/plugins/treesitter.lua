@@ -4,7 +4,7 @@ return {
 		-- run = ':TSUpdate',
 		config = function()
 			require('nvim-treesitter.configs').setup{
-				ensure_installed = { 'cpp', 'lua', 'c_sharp' },
+				ensure_installed = { 'cpp', 'lua', 'c_sharp', markdown },
 				highlight = { enable = true },
 				incremental_selection = { enable = true },
 				textobjects = { enable = true },
