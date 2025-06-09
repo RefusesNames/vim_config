@@ -14,9 +14,6 @@ return {
 				}
 			}
 		end,
-		dependencies = {
-			{ 'p00f/nvim-ts-rainbow' }
-		}
-
-	}
+	},
+	"hiphish/rainbow-delimiters.nvim",
 }
