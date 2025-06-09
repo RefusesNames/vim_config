@@ -3,6 +3,7 @@ return {
 	{
 		-- source: https://github.com/mfussenegger/nvim-dap
 		'mfussenegger/nvim-dap',
+		lazy = true,
 		config = function()
 			local local_config = require('local_config')
 			-- TODO: docs mention that 'set noshellslash' might be required
@@ -45,6 +46,7 @@ return {
 	{
 		-- source: https://github.com/rcarriga/nvim-dap-ui
 		'rcarriga/nvim-dap-ui',
+		lazy = true,
 		dependencies = {
 			'mfussenegger/nvim-dap',
 			'nvim-neotest/nvim-nio'
