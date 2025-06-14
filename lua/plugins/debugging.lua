@@ -4,6 +4,7 @@ return {
 		-- source: https://github.com/mfussenegger/nvim-dap
 		'mfussenegger/nvim-dap',
 		lazy = true,
+		-- TODO: add trigger for lazy execution (see https://lazy.folke.io/spec/lazy_loading)
 		config = function()
 			local local_config = require('local_config')
 			-- TODO: docs mention that 'set noshellslash' might be required
@@ -47,6 +48,7 @@ return {
 		-- source: https://github.com/rcarriga/nvim-dap-ui
 		'rcarriga/nvim-dap-ui',
 		lazy = true,
+		-- TODO: add trigger for lazy execution (see https://lazy.folke.io/spec/lazy_loading)
 		dependencies = {
 			'mfussenegger/nvim-dap',
 			'nvim-neotest/nvim-nio'

@@ -38,6 +38,7 @@ return
 	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
+		ft = { 'cs', 'rust', 'cpp' },
 		config = function()
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)

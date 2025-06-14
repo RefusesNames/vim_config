@@ -1,9 +1,15 @@
 return {
 	{
 		'stevearc/oil.nvim',
+		lazy = true,
 		-- Optional dependencies
 		-- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
 		dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if prefer nvim-web-devicons
+		keys = {
+			{ '<leader>e', function()
+				require('oil').open_float()
+			end, desc = 'Open parent directory' }
+		},
 		config = function()
 			require('oil').setup{
 				columns = { "icon" },
@@ -14,8 +20,6 @@ return {
 					show_hidden = true,
 				}
 			}
-			-- vim.keymap.set('n', '<leader>e', require('oil').open, { desc = 'Open parent directory' })
-			vim.keymap.set('n', '<leader>e', require('oil').open_float, { desc = 'Open parent directory' })
 		end
 	},
 }
