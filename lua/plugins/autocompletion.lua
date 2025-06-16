@@ -38,7 +38,7 @@ return
 	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
-		ft = { 'cs', 'rust', 'cpp' },
+		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact' },
 		config = function()
 			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
@@ -85,6 +85,8 @@ return
 			require('lspconfig').rust_analyzer.setup{
 				-- TODO: if we don't have the `on_attach` above, can we just remove this line?
 				-- on_attach = on_attach
+			}
+			require('lspconfig').ts_ls.setup{
 			}
 
 			require('lspconfig').lua_ls.setup{
