@@ -46,30 +46,25 @@ return
 			vim.keymap.set('n', 'gi', function()
 				require("telescope.builtin").lsp_implementations{}
 			end)
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
-			vim.keymap.set('n','<leader>wa', vim.lsp.buf.add_workspace_folder)
-			vim.keymap.set('n','<leader>wr', vim.lsp.buf.remove_workspace_folder)
-			vim.keymap.set('n','<leader>wl', function()
+			vim.keymap.set('n', 'gr', function()
+				require("telescope.builtin").lsp_references{}
+			end)
+			vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
+			vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
+			vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
+			vim.keymap.set('n', '<leader>wl', function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end)
-			vim.keymap.set('n','<leader>D', vim.lsp.buf.type_definition)
-			vim.keymap.set('n','<leader>rn', vim.lsp.buf.rename)
-			vim.keymap.set('n','<leader>d', vim.diagnostic.open_float)
+			vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition)
+			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
+			vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
 			-- vim.keymap.set('n','[d', vim.lsp.diagnostic.goto_prev)
 			-- vim.keymap.set('n',']d', vim.lsp.diagnostic.goto_next)
 			-- vim.keymap.set('n','<leader>q', vim.lsp.diagnostic.set_loclist)
-			vim.keymap.set('n','<leader>a', vim.lsp.buf.code_action)
+			vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action)
 
-			-- this might have been replaced by `vim.lsp.buf.hover()` (see https://neovim.io/doc/user/news-0.11.html):
-			vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help)
-			-- ['<space>k'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-			--['gr'] = '<cmd>lua require("telescope.builtin").lsp_references{}<CR>',
 			-- ['<space>d'] = '<cmd>lua require("telescope.builtin").diagnostics{}<CR>',
 			-- ['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
-			--
-			--
-			--
-			-- local nvim_lsp = require('lspconfig')
 
 			local local_config = require('local_config')
 
