@@ -4,7 +4,22 @@ return {
 		-- source: https://github.com/mfussenegger/nvim-dap
 		'mfussenegger/nvim-dap',
 		lazy = true,
-		-- TODO: add trigger for lazy execution (see https://lazy.folke.io/spec/lazy_loading)
+		-- ft = { 'cs' },
+		keys = {
+			{ '<F5>', function() require('dap').continue() end, desc = 'Run debugger' },
+			{ '<F10>', function() require('dap').step_over() end, desc = 'Step over' },
+			{ '<F11>', function() require('dap').step_into() end, desc = 'Stop into' },
+			{ '<F12>', function() require('dap').step_out() end, desc = 'Step out' },
+			{ '<leader>b', function() require('dap').toggle_breakpoint() end, desc = 'Toggle breakpoint' },
+			{ '<leader>B',
+				function() require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+				desc = 'Set breakpoint with condition' },
+			{ '<leader>lp',
+				function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+				desc = 'Set breakpoint with log message' },
+			{ '<leader>dr', function() require('dap').repl_open() end, desc = 'Open REPL' },
+			{ '<leader>dl', function() require('dap').run_last() end, desc = 'Run last'},
+		},
 		config = function()
 			local local_config = require('local_config')
 			-- TODO: docs mention that 'set noshellslash' might be required
@@ -25,15 +40,6 @@ return {
 					end,
 				},
 			}
-			vim.api.nvim_set_keymap('n', '<F5>', ':lua require\'dap\'.continue()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<F10>', ':lua require\'dap\'.step_over()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<F11>', ':lua require\'dap\'.step_into()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<F12>', ':lua require\'dap\'.step_out()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<leader>b', ':lua require\'dap\'.toggle_breakpoint()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<leader>B', ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<leader>lp', ':lua require\'dap\'.set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require\'dap\'.repl_open()<CR>', { noremap = true, silent = true })
-			vim.api.nvim_set_keymap('n', '<leader>dl', ':lua require\'dap\'.run_last()<CR>', { noremap = true, silent = true })
 			-- USAGE:
 			--
 			--   Setting breakpoints via :lua require'dap'.toggle_breakpoint().
@@ -48,7 +54,7 @@ return {
 		-- source: https://github.com/rcarriga/nvim-dap-ui
 		'rcarriga/nvim-dap-ui',
 		lazy = true,
-		-- TODO: add trigger for lazy execution (see https://lazy.folke.io/spec/lazy_loading)
+		ft = { 'cs' },
 		dependencies = {
 			'mfussenegger/nvim-dap',
 			'nvim-neotest/nvim-nio'
