@@ -41,8 +41,6 @@ require('appearance')
 
 require('resharper')
 
-require('debugging')
-
 -- vim.api.nvim_command('autocmd Filetype ts setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 -- vim.api.nvim_command('autocmd Filetype cs setlocal omnifunc=v:lua.vim.lsp.omnifunc')
 -- vim.api.nvim_command('autocmd TermOpen * setlocal nonumber norelativenumber')
