@@ -39,29 +39,31 @@ return
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
 		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact' },
-		config = function()
-			vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+		keys = {
+			{ 'gD', vim.lsp.buf.declaration, desc = 'Go to declaration' },
+			{ 'gd', vim.lsp.buf.definition, desc = 'Go to definition' },
 			--['gd'] = '<cmd>lua require("telescope.builtin").lsp_definitions{}<CR>',
-			vim.keymap.set('n', 'gi', function()
+			{ 'gi', function()
 				require("telescope.builtin").lsp_implementations{}
-			end)
-			vim.keymap.set('n', 'gr', function()
+			end, desc = 'Go to implementations' },
+			{ 'gr', function()
 				require("telescope.builtin").lsp_references{}
-			end)
-			vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover)
-			vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder)
-			vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder)
-			vim.keymap.set('n', '<leader>wl', function()
+			end, desc = 'Go to references' },
+			{ '<leader>k', vim.lsp.buf.hover, desc = 'Open tooltip' },
+			{ '<leader>wa', vim.lsp.buf.add_workspace_folder, desc = 'Add workspace folder' },
+			{ '<leader>wr', vim.lsp.buf.remove_workspace_folder, desc = 'Remove workspace folder' },
+			{ '<leader>wl', function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-			end)
-			vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition)
-			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
-			vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
-			-- vim.keymap.set('n','[d', vim.lsp.diagnostic.goto_prev)
-			-- vim.keymap.set('n',']d', vim.lsp.diagnostic.goto_next)
+			end, desc = 'List workspace folders' },
+			{ '<leader>D', vim.lsp.buf.type_definition, desc = 'Show type definition' },
+			{ '<leader>rn', vim.lsp.buf.rename, desc = 'Rename' },
+			{ '<leader>d', vim.diagnostic.open_float, desc = 'Open float?' },
+			{ '<leader>p', vim.lsp.diagnostic.goto_prev, desc = 'Go to previous diagnostic' },
+			{ '<leader>n', vim.lsp.diagnostic.goto_next, desc = 'Go to next diagnostic' },
+			{ '<leader>a', vim.lsp.buf.code_action, desc = 'Execute code action' },
+		},
+		config = function()
 			-- vim.keymap.set('n','<leader>q', vim.lsp.diagnostic.set_loclist)
-			vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action)
 
 			-- ['<space>d'] = '<cmd>lua require("telescope.builtin").diagnostics{}<CR>',
 			-- ['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
