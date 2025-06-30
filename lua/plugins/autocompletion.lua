@@ -38,7 +38,7 @@ return
 	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
-		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact' },
+		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact', 'ps1' },
 		keys = {
 			{ 'gD', vim.lsp.buf.declaration, desc = 'Go to declaration' },
 			{ 'gd', vim.lsp.buf.definition, desc = 'Go to definition' },
@@ -85,6 +85,10 @@ return
 			}
 			require('lspconfig').ts_ls.setup{
 			}
+
+			vim.lsp.config('powershell_es', {
+				bundle_path = local_config.powershell_es_path,
+			})
 
 			require('lspconfig').lua_ls.setup{
 				on_init = function(client)
