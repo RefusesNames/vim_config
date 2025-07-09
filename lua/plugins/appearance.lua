@@ -1,11 +1,12 @@
 return {
 	{
-		'eldritch-theme/eldritch.nvim',
-		priority = 1000,
+		'ribru17/bamboo.nvim',
 		lazy = false,
+		priority = 1000,
 		config = function()
-			vim.cmd([[ colorscheme eldritch ]])
-		end
+			require('bamboo').setup{}
+			require('bamboo').load()
+		end,		
 	},
 	{
 		'nvim-lualine/lualine.nvim',
