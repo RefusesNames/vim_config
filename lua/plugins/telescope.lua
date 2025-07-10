@@ -19,7 +19,7 @@ return
 			local telescope = require('telescope')
 			telescope.setup {
 				defaults = {
-					file_ignore_patterns = { ".git", ".svn", "bin", "obj", "target" }
+					file_ignore_patterns = { "^.git", "^.svn", "^bin", "^obj", "^target" }
 				}
 			}
 		end
