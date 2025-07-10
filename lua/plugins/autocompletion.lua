@@ -38,7 +38,7 @@ return
 	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
-		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact', 'ps1' },
+		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact', 'ps1', 'lua' },
 		keys = {
 			{ 'gD', vim.lsp.buf.declaration, desc = 'Go to declaration' },
 			{ 'gd', vim.lsp.buf.definition, desc = 'Go to definition' },
@@ -75,22 +75,23 @@ return
 			local solution_cache = {}
 			local pid = vim.fn.getpid()
 
-			require('lspconfig').clangd.setup{
-				-- TODO: if we don't have the `on_attach` above, can we just remove this line?
-				-- on_attach = on_attach
-			}
-			require('lspconfig').rust_analyzer.setup{
-				-- TODO: if we don't have the `on_attach` above, can we just remove this line?
-				-- on_attach = on_attach
-			}
-			require('lspconfig').ts_ls.setup{
-			}
+			-- TODO: do I need these?
+			-- require('lspconfig').clangd.setup{
+			-- 	-- TODO: if we don't have the `on_attach` above, can we just remove this line?
+			-- 	-- on_attach = on_attach
+			-- }
+			-- require('lspconfig').rust_analyzer.setup{
+			-- 	-- TODO: if we don't have the `on_attach` above, can we just remove this line?
+			-- 	-- on_attach = on_attach
+			-- }
+			-- require('lspconfig').ts_ls.setup{
+			-- }
 
 			vim.lsp.config('powershell_es', {
 				bundle_path = local_config.powershell_es_path,
 			})
 
-			require('lspconfig').lua_ls.setup{
+			vim.lsp.config('lua_ls', {
 				on_init = function(client)
 					if client.workspace_folders then
 						local path = client.workspace_folders[1].name
@@ -122,7 +123,7 @@ return
 				settings = {
 					Lua = {}
 				}
-			}
+			})
 
 			-- luasnip setup
 			local luasnip = require 'luasnip'
