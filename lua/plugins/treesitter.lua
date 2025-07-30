@@ -3,6 +3,7 @@ return {
 		'nvim-treesitter/nvim-treesitter',
 		lazy = true,
 		ft = { 'cpp', 'cs', 'markdown', 'xml', 'lua', 'typescript', 'typescriptreact', 'ps1' },
+		cmd = { 'TSInstall', 'TSUpdate' },
 		-- run = ':TSUpdate',
 		config = function()
 			require('nvim-treesitter.configs').setup{
