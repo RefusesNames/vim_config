@@ -8,7 +8,7 @@ return {
 			"sindrets/diffview.nvim",        -- optional
 			"ibhagwan/fzf-lua",              -- optional
 		},
-		cmd = 'Neogit',
+		cmd = { 'Neogit', 'DiffviewOpen' },
 		keys = {
 			{ '<leader>gg', function()
 				require('neogit').open({ kind = 'floating' })
