@@ -21,6 +21,14 @@ return
 					require('telescope.builtin').treesitter{ symbols='method' }
 				end,
 				desc = 'Fuzzy search in methods' },
+			{ 'gvd', function()
+					require"telescope.builtin".lsp_definitions({jump_type="vsplit"})
+				end,
+				desc = 'Go to definition in vertical split'},
+			{ 'ghd', function()
+					require"telescope.builtin".lsp_definitions({jump_type="split"})
+				end,
+				desc = 'Go to definition in horizontal split'},
 		},
 		config = function()
 			local telescope = require('telescope')
