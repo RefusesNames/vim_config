@@ -84,8 +84,11 @@ return
 			-- 	-- TODO: if we don't have the `on_attach` above, can we just remove this line?
 			-- 	-- on_attach = on_attach
 			-- }
-			-- require('lspconfig').ts_ls.setup{
-			-- }
+
+			-- install prerequisites via "npm install -g typescript typescript-language-server"
+			require('lspconfig').ts_ls.setup{
+			}
+			vim.lsp.enable('ts_ls')
 
 			vim.lsp.config('powershell_es', {
 				bundle_path = local_config.powershell_es_path,
