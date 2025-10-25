@@ -88,7 +88,7 @@ return
 			-- install prerequisites via "npm install -g typescript typescript-language-server"
 			require('lspconfig').ts_ls.setup{
 			}
-			vim.lsp.enable('ts_ls')
+			require('neodev').setup()
 
 			vim.lsp.config('powershell_es', {
 				bundle_path = local_config.powershell_es_path,
@@ -107,7 +107,11 @@ return
 						runtime = {
 							-- Tell the language server which version of Lua you're using
 							-- (most likely LuaJIT in the case of Neovim)
-							version = 'LuaJIT'
+							version = 'LuaJIT',
+							path = vim.split(package.path, ';'),
+						},
+						diagnostics = {
+							globals = { 'vim' },  -- Recognize `vim` as a global
 						},
 						-- Make the server aware of Neovim runtime files
 						workspace = {
@@ -117,7 +121,7 @@ return
 								-- Depending on the usage, you might want to add additional paths here.
 								-- "${3rd}/luv/library"
 								-- "${3rd}/busted/library",
-							}
+							},
 							-- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
 							-- library = vim.api.nvim_get_runtime_file("", true)
 						}
@@ -127,6 +131,7 @@ return
 					Lua = {}
 				}
 			})
+			vim.lsp.enable('ts_ls')
 
 			-- luasnip setup
 			local luasnip = require 'luasnip'
@@ -181,6 +186,7 @@ return
 			'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
 			'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
 			'L3MON4D3/LuaSnip', -- Snippets plugin
+			'folke/neodev.nvim', -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
 		}
 	},
 }
