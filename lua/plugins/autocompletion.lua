@@ -1,41 +1,6 @@
 return
 {
 	{
-		'seblyng/roslyn.nvim',
-		ft = 'cs',
-		opts = {
-			config = {
-				cmd = {
-					"dotnet",
-					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-					"--logLevel=Information",
-					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-					"--stdio"
-				},
-				settings = {
-					["csharp|inlay_hints"] = {
-						csharp_enable_inlay_hints_for_implicit_object_creation = true,
-						csharp_enable_inlay_hints_for_implicit_variable_types = true,
-						csharp_enable_inlay_hints_for_lambda_parameter_types = true,
-						csharp_enable_inlay_hints_for_types = true,
-						dotnet_enable_inlay_hints_for_indexer_parameters = true,
-						dotnet_enable_inlay_hints_for_literal_parameters = true,
-						dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-						dotnet_enable_inlay_hints_for_other_parameters = true,
-						dotnet_enable_inlay_hints_for_parameters = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-						dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-					},
-					["csharp|code_lens"] = {
-						dotnet_enable_references_code_lens = true,
-					},
-				},
-			},
-		},
-		lazy = true
-	},
-	{
 		'neovim/nvim-lspconfig',-- Collection of configurations for built-in LSP client
 		lazy = true,
 		ft = { 'cs', 'rust', 'cpp', 'typescript', 'typescriptreact', 'ps1', 'lua' },
@@ -63,75 +28,12 @@ return
 			{ '<leader>a', vim.lsp.buf.code_action, desc = 'Execute code action' },
 		},
 		config = function()
-			-- vim.keymap.set('n','<leader>q', vim.lsp.diagnostic.set_loclist)
-
-			-- ['<space>d'] = '<cmd>lua require("telescope.builtin").diagnostics{}<CR>',
-			-- ['<space>a'] = '<cmd>lua require("telescope.builtin").lsp_code_actions{}<CR>',
-
-			local local_config = require('local_config')
-
 			vim.diagnostic.config({ virtual_text = false })
 
-			local solution_cache = {}
-			local pid = vim.fn.getpid()
-
-			-- TODO: do I need these?
-			-- require('lspconfig').clangd.setup{
-			-- 	-- TODO: if we don't have the `on_attach` above, can we just remove this line?
-			-- 	-- on_attach = on_attach
-			-- }
-			-- require('lspconfig').rust_analyzer.setup{
-			-- 	-- TODO: if we don't have the `on_attach` above, can we just remove this line?
-			-- 	-- on_attach = on_attach
-			-- }
-
-			-- install prerequisites via "npm install -g typescript typescript-language-server"
-			require('lspconfig').ts_ls.setup{
-			}
-			require('neodev').setup()
-
-			vim.lsp.config('powershell_es', {
-				bundle_path = local_config.powershell_es_path,
-			})
-
-			vim.lsp.config('lua_ls', {
-				on_init = function(client)
-					if client.workspace_folders then
-						local path = client.workspace_folders[1].name
-						if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-							return
-						end
-					end
-
-					client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-						runtime = {
-							-- Tell the language server which version of Lua you're using
-							-- (most likely LuaJIT in the case of Neovim)
-							version = 'LuaJIT',
-							path = vim.split(package.path, ';'),
-						},
-						diagnostics = {
-							globals = { 'vim' },  -- Recognize `vim` as a global
-						},
-						-- Make the server aware of Neovim runtime files
-						workspace = {
-							checkThirdParty = false,
-							library = {
-								vim.env.VIMRUNTIME
-								-- Depending on the usage, you might want to add additional paths here.
-								-- "${3rd}/luv/library"
-								-- "${3rd}/busted/library",
-							},
-							-- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
-							-- library = vim.api.nvim_get_runtime_file("", true)
-						}
-					})
-				end,
-				settings = {
-					Lua = {}
-				}
-			})
-			vim.lsp.enable('ts_ls')
+			require('plugins/lsp_config/powershell_es')
+			require('plugins/lsp_config/lua_ls')
+			require('plugins/lsp_config/ts_ls')
+			
 
 			-- luasnip setup
 			local luasnip = require 'luasnip'
