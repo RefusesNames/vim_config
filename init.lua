@@ -19,7 +19,19 @@ vim.api.nvim_create_autocmd(
 	{"BufEnter", "BufWinEnter"},
 	{
 		pattern = { "*.xaml" },
-		command = "set syntax=xml"
+		callback = function()
+			vim.bo.filetype = "xml"
+		end
+	}
+)
+
+vim.api.nvim_create_autocmd(
+	{"BufRead", "BufNewFile"},
+	{
+		pattern = "*.razor",
+		callback = function()
+			vim.bo.filetype = "razor"
+		end
 	}
 )
 
