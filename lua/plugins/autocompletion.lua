@@ -88,7 +88,17 @@ return
 			'hrsh7th/cmp-nvim-lsp', -- LSP source for nvim-cmp
 			'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
 			'L3MON4D3/LuaSnip', -- Snippets plugin
-			'folke/neodev.nvim', -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API.
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						-- See the configuration section for more details
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
 		}
 	},
 }
