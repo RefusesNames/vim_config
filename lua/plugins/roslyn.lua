@@ -3,8 +3,8 @@ return
 	{
 		'seblyng/roslyn.nvim',
 		ft = 'cs',
-		opts = {
-			config = {
+		config = function()
+			vim.lsp.config('roslyn', {
 				cmd = {
 					"dotnet",
 					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
@@ -31,7 +31,9 @@ return
 						dotnet_enable_references_code_lens = true,
 					},
 				},
-			},
+			})
+		end,
+		opts = {
 		},
 		lazy = true
 	}
