@@ -17,6 +17,8 @@ return
 				desc = 'Fuzzy search in all files' },
 			{ '<leader>fb', require('telescope.builtin').current_buffer_fuzzy_find,
 				desc = 'Fuzzy search in current buffer' },
+			{ '<leader>gb', require('telescope.builtin').buffers,
+				desc = 'Fuzzy search for buffer' },
 			{ '<leader>m', function()
 					require('telescope.builtin').treesitter{ symbols='method' }
 				end,
