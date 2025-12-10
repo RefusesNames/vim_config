@@ -14,7 +14,8 @@ return {
 			require('oil').setup{
 				columns = { "icon" },
 				keymaps = {
-					['<C-h>'] = false,
+					["<C-v>"] = { "actions.select", opts = { vertical = true } },
+					["<C-x>"] = { "actions.select", opts = { horizontal = true } },
 				},
 				view_options = {
 					show_hidden = true,
