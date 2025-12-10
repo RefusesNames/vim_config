@@ -5,13 +5,6 @@ return
 		ft = 'cs',
 		config = function()
 			vim.lsp.config('roslyn', {
-				cmd = {
-					"dotnet",
-					vim.fs.joinpath(vim.fn.stdpath("data"), "roslyn", "Microsoft.CodeAnalysis.LanguageServer.dll"),
-					"--logLevel=Information",
-					"--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
-					"--stdio"
-				},
 				settings = {
 					["csharp|inlay_hints"] = {
 						csharp_enable_inlay_hints_for_implicit_object_creation = true,

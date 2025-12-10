@@ -26,7 +26,7 @@ return {
 			local dap = require('dap')
 			dap.adapters.coreclr = {
 				type = 'executable',
-				command = local_config.netcoredbg_path,
+				command = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "netcoredbg", "netcoredbg", "netcoredbg.exe"),
 				args = {'--interpreter=vscode'}
 			}
 			dap.configurations.cs = {
@@ -36,7 +36,7 @@ return {
 					request = 'launch',
 					program = function()
 						-- TODO: query the path to the dll, but provide reasonable default
-						return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+						return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
 					end,
 				},
 			}

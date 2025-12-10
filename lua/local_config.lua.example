@@ -1,6 +1,3 @@
 return {
-	omnisharp_path = 'D:\\path\\to\\OmniSharp.exe',
 	tmp_path = 'C:\\Users\\[User]\\AppData\\Local\\Temp',
-	netcoredbg_path = 'C:\\Users\\jerom\\bin\\netcoredbg\\netcoredbg.exe',
-	powershell_es_path = 'C:\\Users\\jerom\\bin\\PowerShellEditorServices',
 }
