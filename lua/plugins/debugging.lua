@@ -1,3 +1,5 @@
+local Util = require('util')
+
 -- see https://aaronbos.dev/posts/debugging-csharp-neovim-nvim-dap
 return {
 	{
@@ -35,8 +37,23 @@ return {
 					name = 'launch - netcoredbg',
 					request = 'launch',
 					program = function()
-						-- TODO: query the path to the dll, but provide reasonable default
-						return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+						local current_folder = vim.fn.expand('%:p:h')
+						local csproj_path = Util.find_file_in_parent_dirs(current_folder, '.csproj')
+						local csproj_dir = vim.fs.dirname(csproj_path)
+						local cmd = string.format(
+							"cd %q" ..
+							" && dotnet msbuild %q -property:Configuration=Debug -getProperty:OutputPath",
+							csproj_dir,
+							csproj_path)
+						local output = vim.fn.system(cmd)
+						local build_dir = vim.trim(output)
+						local dll_path = Util.get_file_in_folder(csproj_dir .. '/' .. build_dir, '.dll')
+
+						if dll_path then
+							return dll_path
+						end
+
+						error("Could not find built .dll file. Please build the project first.")
 					end,
 				},
 			}

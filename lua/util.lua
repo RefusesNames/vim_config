@@ -1,6 +1,6 @@
 local Util = {}
 
-local function get_file_in_folder(folder_path, target_file_extension)
+function Util.get_file_in_folder(folder_path, target_file_extension)
 	print('Looking for project file in folder: ' .. folder_path)
 
 	local file_candidates = {}
@@ -32,7 +32,7 @@ function Util.find_file_in_parent_dirs(start_dir, target_file_extension)
 	local current_folder = start_dir
 
 	repeat
-		local file = get_file_in_folder(current_folder, target_file_extension)
+		local file = Util.get_file_in_folder(current_folder, target_file_extension)
 		if file ~= nil then
 			return file
 		end
