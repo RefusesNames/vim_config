@@ -7,6 +7,14 @@ local function get_project_file()
 	return Util.find_file_in_parent_dirs(current_folder, '.csproj')
 end
 
+local function get_solution_file()
+	local current_folder = vim.fn.expand('%:p:h')
+
+	print('Starting to look for solution file in folder: ' .. current_folder)
+	-- todo: support slnx
+	return Util.find_file_in_parent_dirs(current_folder, '.sln')
+end
+
 local function read_success(resharper_data)
 	return resharper_data.runs[1].invocations[1].executionSuccessful
 end
@@ -39,17 +47,16 @@ local function transform_for_quickfix(resharper_result_entry, root)
 	}
 end
 
-local function execute_resharper()
+local function execute_resharper_inspectcode()
 	-- TODO: use `vim.loop.spawn` to do this asynchronously
 	-- (see https://github.com/lewis6991/async.nvim#example and `:h vim.loop`)
 	-- (maybe use vim.loop.new_thread?)
 	local tmp_file_name = os.tmpname()
-	local current_file = vim.fn.expand('%:t')
 
 	local project_file = get_project_file()
 	print('project file found: ' .. project_file)
 	local command = 'jb inspectcode ' .. project_file
-		.. ' --no-build --output=' .. tmp_file_name .. ' --include=' .. current_file
+		.. ' --no-build --output=' .. tmp_file_name
 	print(command)
 	vim.fn.system(command)
 
@@ -81,5 +88,39 @@ local function execute_resharper()
 	vim.cmd('copen')
 end
 
+local function execute_resharper_cleanupcode_file()
+	local current_file = vim.fn.expand('%:p')
+	local command = 'jb cleanupcode ' .. current_file
+	print("Executing ReSharper cleanupcode on current file: " .. current_file)
+	vim.fn.system(command)
+	print("Finished executing cleanup.")
+	vim.api.nvim_command("checktime")
+end
 
-vim.api.nvim_create_user_command('ReSharper', execute_resharper, { force = true })
+local function execute_resharper_cleanupcode_solution()
+	local solution_file = get_solution_file()
+	local command = 'jb cleanupcode ' .. solution_file
+	print("Executing command: " .. command)
+	vim.fn.system(command)
+	print("Finished executing cleanup.")
+	vim.api.nvim_command("checktime")
+end
+
+local function execute_resharper(cmd)
+	if cmd == "inspect" then
+		execute_resharper_inspectcode()
+	elseif cmd == "cleanup_file" then
+		execute_resharper_cleanupcode_file()
+	elseif cmd == "cleanup_solution" then
+		execute_resharper_cleanupcode_solution()
+	else vim.notify("Unknown ReSharper command: " .. tostring(cmd), vim.log.levels.ERROR) end
+end
+
+
+vim.api.nvim_create_user_command("ReSharper", function(opts)
+  local args = opts.fargs
+	execute_resharper(args[1])
+end, {
+  nargs = "*",
+  force = true,
+})
