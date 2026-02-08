@@ -43,4 +43,21 @@ function Util.find_file_in_parent_dirs(start_dir, target_file_extension)
 	return nil
 end
 
+function Util.read_json_file(file_path)
+	local file = io.open(file_path, 'r')
+	if not file then
+		return nil
+	end
+
+	local content = file:read('*a')
+	file:close()
+
+	local ok, data = pcall(vim.fn.json_decode, content)
+	if not ok then
+		return nil
+	end
+
+	return data
+end
+
 return Util
