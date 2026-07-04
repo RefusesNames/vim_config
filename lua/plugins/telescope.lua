@@ -31,6 +31,50 @@ return
 					require"telescope.builtin".lsp_definitions({jump_type="split"})
 				end,
 				desc = 'Go to definition in horizontal split'},
+				
+			-- less often used commands:
+			{ '<leader>t', function()
+				local pickers = require("telescope.pickers")
+				local finders = require("telescope.finders")
+				local conf = require("telescope.config").values
+				local actions = require("telescope.actions")
+				local action_state = require("telescope.actions.state")
+				local items = {
+					{ name = "Git Status", value = "git_status" },
+					{ name = "Buffers", value = "buffers" },
+					{ name = "Current Buffer Fuzzy Find", value = "current_buffer_fuzzy_find" },
+				}
+				pickers.new({}, {
+					prompt_title = "Choose action",
+					finder = finders.new_table({
+						results = items,
+						entry_maker = function(entry)
+							return {
+								value = entry.value,
+								display = entry.name,
+								ordinal = entry.name,
+							}
+						end,
+					}),
+					sorter = conf.generic_sorter({}),
+					attach_mappings = function(_, map)
+						map("i", "<CR>", function(prompt_bufnr)
+							local entry = action_state.get_selected_entry()
+							actions.close(prompt_bufnr)
+
+							if entry.value == "git_status" then
+								require("telescope.builtin").git_status()
+							elseif entry.value == "buffers" then
+								require("telescope.builtin").buffers()
+							elseif entry.value == "current_buffer_fuzzy_find" then
+								require("telescope.builtin").current_buffer_fuzzy_find()
+							end
+						end)
+						return true
+					end,
+				}):find()
+
+			end }
 		},
 		config = function()
 			local telescope = require('telescope')
