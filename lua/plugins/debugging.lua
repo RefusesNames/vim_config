@@ -26,6 +26,16 @@ return {
 			local local_config = require('local_config')
 			-- TODO: docs mention that 'set noshellslash' might be required
 			local dap = require('dap')
+
+			local function read_args()
+				local path = vim.fn.getcwd() .. "/.dap_args"
+				if vim.fn.filereadable(path) == 1 then
+					local line = vim.fn.readfile(path)[1]
+					return vim.split(line, " ")
+				end
+				return {}
+			end
+
 			dap.adapters.coreclr = {
 				type = 'executable',
 				command = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "netcoredbg", "netcoredbg", "netcoredbg.exe"),
@@ -55,6 +65,7 @@ return {
 
 						error("Could not find built .dll file. Please build the project first.")
 					end,
+					args = read_args
 				},
 			}
 			-- USAGE:
