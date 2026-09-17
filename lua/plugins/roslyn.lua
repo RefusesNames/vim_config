@@ -6,6 +6,7 @@ return
     ---@type RoslynNvimConfig
 		ft = {'cs', 'razor'},
 		config = function()
+			-- install roslyn via `dotnet tool install --global roslyn-language-server --prerelease`
 			vim.lsp.config('roslyn', {
 				settings = {
 					["csharp|inlay_hints"] = {
@@ -26,6 +27,7 @@ return
 						dotnet_enable_references_code_lens = true,
 					},
 				},
+
 			})
 		end,
 		opts = {
