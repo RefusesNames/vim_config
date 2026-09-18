@@ -36,6 +36,26 @@ return {
 				return {}
 			end
 
+			local function launch_dotnet()
+				local current_folder = vim.fn.expand('%:p:h')
+				local csproj_path = Util.find_file_in_parent_dirs(current_folder, '.csproj')
+				local csproj_dir = vim.fs.dirname(csproj_path)
+				local cmd = string.format(
+					"cd %q" ..
+					" && dotnet msbuild %q -property:Configuration=Debug -getProperty:OutputPath",
+					csproj_dir,
+					csproj_path)
+					local output = vim.fn.system(cmd)
+					local build_dir = vim.trim(output)
+					local dll_path = Util.get_file_in_folder(csproj_dir .. '/' .. build_dir, '.dll')
+
+					if dll_path then
+						return dll_path
+					end
+
+					error("Could not find built .dll file. Please build the project first.")
+				end
+
 			dap.adapters.coreclr = {
 				type = 'executable',
 				command = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "packages", "netcoredbg", "netcoredbg", "netcoredbg.exe"),
@@ -46,25 +66,16 @@ return {
 					type = 'coreclr',
 					name = 'launch - netcoredbg',
 					request = 'launch',
-					program = function()
-						local current_folder = vim.fn.expand('%:p:h')
-						local csproj_path = Util.find_file_in_parent_dirs(current_folder, '.csproj')
-						local csproj_dir = vim.fs.dirname(csproj_path)
-						local cmd = string.format(
-							"cd %q" ..
-							" && dotnet msbuild %q -property:Configuration=Debug -getProperty:OutputPath",
-							csproj_dir,
-							csproj_path)
-						local output = vim.fn.system(cmd)
-						local build_dir = vim.trim(output)
-						local dll_path = Util.get_file_in_folder(csproj_dir .. '/' .. build_dir, '.dll')
-
-						if dll_path then
-							return dll_path
-						end
-
-						error("Could not find built .dll file. Please build the project first.")
-					end,
+					program = launch_dotnet,
+					args = read_args
+				},
+			}
+			dap.configurations.xaml = {
+				{
+					type = 'coreclr',
+					name = 'launch - netcoredbg',
+					request = 'launch',
+					program = launch_dotnet,
 					args = read_args
 				},
 			}
@@ -82,7 +93,7 @@ return {
 		-- source: https://github.com/rcarriga/nvim-dap-ui
 		'rcarriga/nvim-dap-ui',
 		lazy = true,
-		ft = { 'cs' },
+		ft = { 'cs', 'xaml' },
 		dependencies = {
 			'mfussenegger/nvim-dap',
 			'nvim-neotest/nvim-nio'
