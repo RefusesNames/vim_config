@@ -1,3 +1,5 @@
+vim.cmd.runtime({ "ftplugin/xml.vim", bang = true })
+
 -- Set makeprg to 'dotnet build'
 vim.opt.makeprg = 'dotnet build --no-incremental /clp:nosummary'
 

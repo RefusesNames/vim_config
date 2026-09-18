@@ -15,15 +15,7 @@ vim.filetype.add({
 		xaml = "xaml"
 	}
 })
-vim.api.nvim_create_autocmd(
-	{"BufEnter", "BufWinEnter"},
-	{
-		pattern = { "*.xaml" },
-		callback = function()
-			vim.bo.filetype = "xml"
-		end
-	}
-)
+vim.treesitter.language.register("xml", "xaml")
 
 vim.api.nvim_create_autocmd(
 	{"BufRead", "BufNewFile"},
